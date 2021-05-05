@@ -6,12 +6,14 @@ void	get_contact_index(Contact contact[8], int contact_count)
 {
 	int		index = 0;
 
-	std::cout << "\033[46;1m     index|first name| last name|  nickname\033[0m" << std::endl;
+	std::cout << "\033[45;1m     Index|First Name| Last Name|  Nickname\033[0m" << std::endl;
 	while (index < 8)
 	{
 		if (index < contact_count)
 		{
-			std::cout << std::right << std::setw(10) << "\033[44;1m" << index + 1 << "\033[0m";
+			std::cout << "\033[44;1m";
+			std::cout << std::right << std::setw(10) << index + 1;
+			std::cout << "\033[0m";
 			contact[index].get_short_info();
 		}
 		else
@@ -33,7 +35,7 @@ int		main()
 
 	while (true)
 	{
-		std::cout << "Welcome to the Awesome phonebook!" <<
+		std::cout << "Welcome to the Awesome phonebook! " <<
 			"what would you like to do? you can use these commands(ADD,SEARCH,EXIT)." << std::endl;
 		getline(std::cin, arg);
 		if (arg == "ADD")

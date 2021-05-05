@@ -37,7 +37,9 @@ void	Contact::_format_index(std::string name) const
 		name.resize(9);
 		name+= ".";
 	}
-	std::cout << "\033[44;1m" << std::right << std::setw(10) << (name) << "\033[0m";
+	std::cout << "\033[44;1m";
+	std::cout << std::right << std::setw(10) << name;
+	std::cout << "\033[0m";
 }
 
 void	Contact::get_short_info() const
@@ -45,4 +47,5 @@ void	Contact::get_short_info() const
 	_format_index(this->_first_name);
 	_format_index(this->_last_name);
 	_format_index(this->_nickname);
+	std::cout << std::endl;
 }
