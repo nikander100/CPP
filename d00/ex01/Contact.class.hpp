@@ -18,6 +18,7 @@ private:
 	std::string		_darkest_secret;
 
 	void			_set_data(std::string asked, std::string *input);
+	void			_format_index(std::string name) const;
 
 public:
 	Contact();
