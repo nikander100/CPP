@@ -24,7 +24,22 @@ void	get_contact_index(Contact contact[8], int contact_count)
 
 void	search(Contact contact[8], int contact_count)
 {
+	std::string arg;
+	int			index;
+
 	get_contact_index(contact, contact_count);
+	std::cout << "From which contact would you like too see more info: ";
+	std::getline(std::cin, arg);
+	std::cout << std::endl;
+	if (std::cin.eof())
+		return ;
+	if (arg.length() != 1 || arg[0] == '0' || !std::isdigit(arg[0]) || (arg[0] - '0') > contact_count)
+		std::cout << "please give a valid input: (1-" << contact_count << ")." << std::endl << std::endl;
+	else
+	{
+		index = arg[0] - '0';
+		contact[index - 1].get_info();
+	}
 }
 
 int		main()
@@ -40,15 +55,19 @@ int		main()
 		getline(std::cin, arg);
 		if (arg == "ADD")
 		{
-			contact[contact_count++].add();
+			if (contact_count >= 8)
+				std::cout << "The phonebook is full!!" << std::endl << std::endl;
+			else
+				contact[contact_count++].add();
 		}
-		if (arg == "SEARCH")
+		if (arg == "SEARCH") 
 		{
-			search(contact, contact_count);
+			if (contact_count == 0)
+				std::cout << "There are no contacts in the phonebook." << std::endl << std::endl;
+			else
+				search(contact, contact_count);
 		}
-		if (arg == "EXIT")
-		{
+		if (arg == "EXIT" || std::cin.eof())
 			break ;
-		}
 	}
 }

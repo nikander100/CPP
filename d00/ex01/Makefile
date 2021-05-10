@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = phonebook
 
 CC = clang++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 all: $(NAME)
 
 $(NAME):
-	@$(CC) megaphone.cpp -o $(NAME)
+	@$(CC) Contact.class.cpp phonebook.cpp -o $(NAME)
 
 # vvv ¯\_(ツ)_/¯ not needed fucntion whut? ¯\_(ツ)_/¯ vvv
 clean:
