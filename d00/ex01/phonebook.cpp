@@ -47,6 +47,7 @@ int		main()
 	Contact		contact[8];
 	std::string	arg;
 	int			contact_count = 0;
+	int			contact_add_count = 0;
 
 	while (true)
 	{
@@ -55,10 +56,16 @@ int		main()
 		getline(std::cin, arg);
 		if (arg == "ADD")
 		{
-			if (contact_count >= 8)
-				std::cout << "The phonebook is full!!" << std::endl << std::endl;
+			if (contact_count == 8)
+			{
+				if (contact_add_count == 8)
+					contact_add_count = 0;
+				contact[contact_add_count++].add();
+			}
 			else
+			{
 				contact[contact_count++].add();
+			}
 		}
 		if (arg == "SEARCH") 
 		{

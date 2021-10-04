@@ -10,7 +10,19 @@ $(NAME):
 
 # vvv ¯\_(ツ)_/¯ not needed fucntion whut? ¯\_(ツ)_/¯ vvv
 clean:
-	@echo "This function does normally delete output files but there are none (just ignore it) ¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯ This function does normally delete output files but there are none (just ignore it) ¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
+	@echo "¯\_(ツ)_/¯"
 
 fclean:
 	@rm -f $(NAME)
