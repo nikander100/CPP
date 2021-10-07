@@ -3,9 +3,7 @@
 #include "Contact.class.hpp"
 
 Contact::Contact()
-{
-	return;
-}
+{}
 
 void	Contact::_set_data(std::string asked, std::string *input)
 {

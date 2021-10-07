@@ -47,7 +47,7 @@ int		main()
 	Contact		contact[8];
 	std::string	arg;
 	int			contact_count = 0;
-	int			contact_add_count = 0;
+	int			contact_loop_count = 0;
 
 	while (true)
 	{
@@ -58,14 +58,12 @@ int		main()
 		{
 			if (contact_count == 8)
 			{
-				if (contact_add_count == 8)
-					contact_add_count = 0;
-				contact[contact_add_count++].add();
+				if (contact_loop_count == 8)
+					contact_loop_count = 0;
+				contact[contact_loop_count++].add();
 			}
 			else
-			{
 				contact[contact_count++].add();
-			}
 		}
 		if (arg == "SEARCH") 
 		{
