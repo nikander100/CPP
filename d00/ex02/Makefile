@@ -1,23 +1,20 @@
-NAME = tests
+NAME = runme
 CC = clang++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
-OBJSDIR = objs
-INCLUDES = Account.hpp 
 
 OBJS = Account tests
-_OBJS = $(addsuffix .o, $(addprefix $(OBJSDIR)/, $(OBJS)))
+_OBJS = $(addsuffix .o, $(OBJS))
 
 all:	$(NAME)
 
 $(NAME): $(_OBJS)
-	@$(CC) $(CFLAGS) -o $(_OBJS) -I./$(INCLUDES) -v
+	@$(CC) $(_OBJS) $(CFLAGS) -o $(NAME)
 
-$(OBJSDIR)/%.o: %.cpp ./$(INCLUDES)
-	@mkdir -p $(OBJSDIR)/$(dir $*)
-	@$(CC) -c $(CFLAGS) -I./$(INCLUDES) -o $@ $< -v
+%.o: %.cpp
+	@$(CC) -c $(CFLAGS) -o $@ $<
 
 clean:
-	@$(RM) -r $(OBJSDIR)
+	@$(RM) *.o
 
 fclean:
 	@$(MAKE) clean
