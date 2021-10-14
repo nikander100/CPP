@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/13 19:32:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2021/10/13 19:45:22 by nvan-der      ########   odam.nl         */
+/*   Updated: 2021/10/14 20:44:34 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ class Zombie
 	private:
 	std::string _name;
 };
+
+Zombie* newZombie( std::string name );
+void randomChump( std::string name );
 
 #endif
