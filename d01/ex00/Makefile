@@ -1,9 +1,9 @@
 NAME = runme
 CC = clang++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
-INCLUDE = 
+INCLUDE = Zombie.hpp
 
-OBJS = 
+OBJS = main newZombie randomChump Zombie
 _OBJS = $(addsuffix .o, $(OBJS))
 
 all:	$(NAME)
