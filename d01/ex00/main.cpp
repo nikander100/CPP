@@ -53,11 +53,9 @@ int main(void)
 		delete(zombies[i]);
 	}
 
-
 	std::cout << std::endl << GREEN << "Creating 2 more zombies via randomChump" << RESET << std::endl << std::endl;
 	randomChump("Another chumping zombie");
 	randomChump("John");
-
 
 	std::cout << std::endl << GREEN << "Announcing and destroying the last 15 zombies on the heap" << RESET << std::endl << std::endl;
 	for (int i = 5; i < 20; i++)
