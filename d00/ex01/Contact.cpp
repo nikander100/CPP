@@ -1,6 +1,4 @@
-#include <iostream>
-#include <iomanip>
-#include "Contact.class.hpp"
+#include "Contact.hpp"
 
 Contact::Contact()
 {}

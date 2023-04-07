@@ -1,5 +1,7 @@
-#ifndef CONTACT_CLASS_HPP
-# define CONTACT_CLASS_HPP
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
+# include <iostream>
+# include <iomanip>
 
 class Contact
 {
