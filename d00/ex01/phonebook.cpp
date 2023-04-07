@@ -2,6 +2,8 @@
 
 PhoneBook::PhoneBook() : _numOfContacts(0), _contactLoopCount(0) {}
 
+PhoneBook::~PhoneBook() {}
+
 void PhoneBook::addContact() {
 	if (this->_numOfContacts == this->_maxContacts) {
 		if (this->_contactLoopCount == this->_maxContacts)
@@ -12,8 +14,8 @@ void PhoneBook::addContact() {
 		this->_contact[this->_numOfContacts++].add();
 }
 
-void PhoneBook::getContact() {
-	this->_getContactIndex();
+void PhoneBook::getContact() const {
+	_getContactIndex();
 	std::cout << "From which contact would you like to see more info: ";
 	std::string arg;
 	std::getline(std::cin, arg);
@@ -24,11 +26,11 @@ void PhoneBook::getContact() {
 		std::cout << "Please give a valid input: (1-" << this->_numOfContacts << ")." << std::endl << std::endl;
 	else {
 		int index = arg[0] - '0';
-		_contact[index - 1].get_info();
+		_contact[index - 1].getInfo();
 	}
 }
 
-void PhoneBook::run() {
+void PhoneBook::run(){
 	std::string arg;
 	while (true) {
 		std::cout << "Welcome to the Awesome phonebook! " <<
@@ -51,14 +53,14 @@ void PhoneBook::run() {
 }
 
 
-void PhoneBook::_getContactIndex() {
+void PhoneBook::_getContactIndex() const {
 	std::cout << "\033[45;1m     Index|First Name| Last Name|  Nickname\033[0m" << std::endl;
-	for (int index; index < this->_maxContacts; index++) {
+	for (int index = 0; index < this->_maxContacts; index++) {
 		if (index < this->_numOfContacts) {
 			std::cout << "\033[44;1m";
 			std::cout << std::right << std::setw(10) << index + 1;
 			std::cout << "\033[0m";
-			_contact[index].get_short_info();
+			_contact[index].getShortInfo();
 		} else
 			std::cout << "\033[41;1m----------|----------|----------|----------\033[0m" << std::endl;
 	}

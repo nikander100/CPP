@@ -5,6 +5,13 @@
 
 class Contact
 {
+public:
+	Contact();
+	~Contact();
+	
+	void			add();
+	void			getInfo() const;
+	void			getShortInfo() const;
 private:
 	/* data */
 	std::string		_first_name;
@@ -19,14 +26,8 @@ private:
 	std::string		_underwear_color;
 	std::string		_darkest_secret;
 
-	void			_set_data(std::string asked, std::string *input);
-	void			_format_index(std::string name) const;
-
-public:
-	Contact();
-	void			add();
-	void			get_info() const;
-	void			get_short_info() const;
+	void			_setData(std::string asked, std::string *input);
+	void			_formatIndex(std::string name) const;
 };
 
 #endif

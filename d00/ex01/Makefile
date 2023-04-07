@@ -1,22 +1,26 @@
 NAME = phonebook
-
+SRCS = Contact.cpp PhoneBook.cpp main.cpp
+OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
+FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+INC_DIR = .
+INC = -I$(INC_DIR)
 
 all: $(NAME)
 
-$(NAME):
-	@$(CC) Contact.class.cpp phonebook.cpp -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(FLAGS) $(INC) $(OBJS) -o $(NAME)
 
-# vvv ¯\_(ツ)_/¯ not needed fucntion whut? ¯\_(ツ)_/¯ vvv
+obj/%.o: %.cpp
+	mkdir -p obj
+	$(CC) $(FLAGS) $(INC) -c $< -o $@
+
 clean:
-	@echo "This function does normally delete output files but there are none (just ignore it) ¯\_(ツ)_/¯"
+	rm -f $(OBJS)
 
-fclean:
-	@rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) all
+re: fclean all
 
 .PHONY: all clean fclean re

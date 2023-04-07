@@ -8,7 +8,7 @@ public:
 	~PhoneBook();
 
 	void	addContact();
-	void	getContact();
+	void	getContact() const;
 	void	run();
 
 private:
@@ -17,7 +17,7 @@ private:
 	int		_numOfContacts;
 	int		_contactLoopCount;
 
-	void	_getContactIndex();
+	void	_getContactIndex() const;
 
 };
 

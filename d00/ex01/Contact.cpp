@@ -1,9 +1,10 @@
 #include "Contact.hpp"
 
-Contact::Contact()
-{}
+Contact::Contact() {}
 
-void	Contact::_set_data(std::string asked, std::string *input)
+Contact::~Contact() {}
+
+void	Contact::_setData(std::string asked, std::string *input)
 {
 	std::cout << asked;
 	getline(std::cin, *input);
@@ -12,41 +13,28 @@ void	Contact::_set_data(std::string asked, std::string *input)
 void	Contact::add()
 {
 	std::cout << "Adding new contact to the Phonebook....." << std::endl;
-	_set_data("Insert First Name: ", &(this->_first_name));
-	_set_data("Insert Last Name: ", &(this->_last_name));
-	_set_data("Insert Nickname: ", &(this->_nickname));
-	_set_data("Insert LogIn: ", &(this->_login));
-	_set_data("Insert Postal Address: ", &(this->_postal_address));
-	_set_data("Insert Email Address: ", &(this->_email_address));
-	_set_data("Insert Phone Number: ", &(this->_phone_number));
-	_set_data("Insert Birthday Date: ", &(this->_birthday_date));
-	_set_data("Insert Favorite Meal: ", &(this->_favorite_meal));
-	_set_data("Insert Underwear Color: ", &(this->_underwear_color));
-	_set_data("Insert Darkest Secret: ", &(this->_darkest_secret));
+	_setData("Insert First Name: ", &(this->_first_name));
+	_setData("Insert Last Name: ", &(this->_last_name));
+	_setData("Insert Nickname: ", &(this->_nickname));
+	_setData("Insert LogIn: ", &(this->_login));
+	_setData("Insert Postal Address: ", &(this->_postal_address));
+	_setData("Insert Email Address: ", &(this->_email_address));
+	_setData("Insert Phone Number: ", &(this->_phone_number));
+	_setData("Insert Birthday Date: ", &(this->_birthday_date));
+	_setData("Insert Favorite Meal: ", &(this->_favorite_meal));
+	_setData("Insert Underwear Color: ", &(this->_underwear_color));
+	_setData("Insert Darkest Secret: ", &(this->_darkest_secret));
 }
 
-void	Contact::_format_index(std::string name) const
+void	Contact::getShortInfo() const
 {
-	std::cout << "\033[44;1m|\033[0m";
-	if (name.length() > 10)
-	{
-		name.resize(9);
-		name+= ".";
-	}
-	std::cout << "\033[44;1m";
-	std::cout << std::right << std::setw(10) << name;
-	std::cout << "\033[0m";
-}
-
-void	Contact::get_short_info() const
-{
-	_format_index(this->_first_name);
-	_format_index(this->_last_name);
-	_format_index(this->_nickname);
+	_formatIndex(this->_first_name);
+	_formatIndex(this->_last_name);
+	_formatIndex(this->_nickname);
 	std::cout << std::endl;
 }
 
-void	Contact::get_info() const
+void	Contact::getInfo() const
 {
 	std::cout << "First name: " << this->_first_name << std::endl;
 	std::cout << "Last name: " << this->_last_name << std::endl;
@@ -60,4 +48,17 @@ void	Contact::get_info() const
 	std::cout << "Underwear color: " << this->_underwear_color << std::endl;
 	std::cout << "Darkest secret: " << this->_darkest_secret<< std::endl;
 	std::cout << std::endl << std::endl;
+}
+
+void	Contact::_formatIndex(std::string name) const
+{
+	std::cout << "\033[44;1m|\033[0m";
+	if (name.length() > 10)
+	{
+		name.resize(9);
+		name+= ".";
+	}
+	std::cout << "\033[44;1m";
+	std::cout << std::right << std::setw(10) << name;
+	std::cout << "\033[0m";
 }
