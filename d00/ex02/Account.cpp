@@ -6,12 +6,14 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/07 14:48:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2021/10/11 14:35:41 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/04/12 16:17:09 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
+#include <iomanip>
+#include <ctime>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -21,7 +23,11 @@ int	Account::_totalNbWithdrawals = 0;
 Account::Account(void)
 {}
 
-Account::Account(int initial_deposit):_amount(initial_deposit),_nbDeposits(0),_nbWithdrawals(0)
+Account::Account(int initial_deposit):
+	_amount(initial_deposit),
+	_nbDeposits(0),
+	_nbWithdrawals(0),
+	_numCallsToCheckAmount(0) // Old Bonus
 {
 	_accountIndex = getNbAccounts();
 	_totalAmount += initial_deposit;
@@ -37,7 +43,10 @@ Account::~Account(void)
 {
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
+	<< ";amount:" << _amount
 	<< ";closed" << std::endl;
+	std::cout << "Old Bonus: save/return count memberfucntion checkAmount: "
+		<< _numCallsToCheckAmount << std::endl;
 	--_nbAccounts;
 	
 }
@@ -117,6 +126,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 
 int		Account::checkAmount(void) const
 {
+	++_numCallsToCheckAmount; // Old Bonus
 	return _amount;
 }
 
@@ -131,5 +141,13 @@ void	Account::displayStatus(void) const
 
 void	Account::_displayTimestamp(void)
 {
-	std::cout << "[19920104_091532] ";
+	std::time_t t = std::time(NULL);
+	std::tm* now = std::localtime(&t);
+
+	std::cout	<< "[" << (now->tm_year + 1900)
+		<< std::setw(2) << std::setfill('0') << (now->tm_mon + 1)
+		<< std::setw(2) << std::setfill('0') << now->tm_mday
+		<< "_" << std::setw(2) << std::setfill('0') << now->tm_hour
+		<< std::setw(2) << std::setfill('0') << now->tm_min
+		<< std::setw(2) << std::setfill('0') << now->tm_sec << "] ";
 }

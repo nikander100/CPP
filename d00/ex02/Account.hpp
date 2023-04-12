@@ -52,6 +52,8 @@ private:
 	int				_nbDeposits;
 	int				_nbWithdrawals;
 
+	mutable int _numCallsToCheckAmount; // Old Bonus
+
 	Account( void );
 
 };
