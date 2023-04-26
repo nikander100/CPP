@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.cpp                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/04/26 18:18:01 by nvan-der      #+#    #+#                 */
+/*   Updated: 2023/04/26 18:18:02 by nvan-der      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 #include <string>
 #include <sstream>
 #include <limits>
+#include <cstdlib>
+#include <ctime>
 
 #define RESET "\033[0m"
 #define GREEN "\033[32m"
@@ -67,7 +81,7 @@ size_t getHordeSize() {
 
 // i use \n over endl as it doesn't flush the output buffer.
 static void	toContinue(void) {
-	std::cout <<  RED << "Press any key to continue...\n\n" << RESET;
+	std::cout <<  RED << "Press ENTER to continue...\n\n" << RESET;
 	std::getchar();
 }
 
@@ -77,7 +91,8 @@ int main(void) {
 	size_t hordeSize = 20;
 	set_names(names);
 
-	std::cout << GREEN << "Allocating a horde of 20 zombies with the name: " << names[15] << RESET << "\nAllocating larger objects or arrays should be done on the heap due to the limited memory of the stack\n";
+	toContinue();
+	std::cout << GREEN << "Allocating a horde of 20 zombies with the name: " << names[15] << RESET << "\n\nAllocating larger objects or arrays should be done on the heap due to the limited memory of the stack\n";
 	Zombie *horde = zombieHorde(hordeSize, names[15]);
 	announceHorde(horde, hordeSize);
 	deleteZombieHorde(horde);
@@ -93,8 +108,9 @@ int main(void) {
 	toContinue();
 	std::cout << GREEN << "Allocating 5 hordes of 5 zombies, where every horde has a random name: " << names[15] << RESET << "\n\n";
 	hordeSize = 5;
+	srand(time(NULL));
 	for (int i = 0; i < 5; i++) {
-		Zombie* horde = zombieHorde(hordeSize, names[rand() % 19]);
+		Zombie* horde = zombieHorde(hordeSize, names[rand() % 20]);
 		announceHorde(horde, hordeSize);
 		deleteZombieHorde(horde);
 		toContinue();

@@ -2,7 +2,7 @@ NAME = phonebook
 SRCS = Contact.cpp PhoneBook.cpp main.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 INC_DIR = .
 INC = -I$(INC_DIR)
 
@@ -16,7 +16,7 @@ obj/%.o: %.cpp
 	$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf obj/
 
 fclean: clean
 	rm -f $(NAME)

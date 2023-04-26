@@ -1,5 +1,5 @@
 NAME = runme
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
 FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
