@@ -6,13 +6,13 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/26 18:18:36 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/04/26 19:41:35 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/11 17:20:48 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : _name(name) {}
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL) {}
 
 HumanB::~HumanB(void) {}
 

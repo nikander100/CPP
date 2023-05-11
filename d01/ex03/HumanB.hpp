@@ -6,13 +6,16 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/26 18:18:45 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/04/26 19:38:58 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/11 17:20:06 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include "Weapon.hpp"
+#ifndef __HUMANB_HPP__
+# define __HUMANB_HPP__
+
+# include <iostream>
+# include <string>
+# include "Weapon.hpp"
 
 class HumanB {
 public:
@@ -25,5 +28,7 @@ public:
 private:
 
 	std::string _name;
-	Weapon  *_weapon{NULL};
+	Weapon *_weapon;
 };
+
+#endif

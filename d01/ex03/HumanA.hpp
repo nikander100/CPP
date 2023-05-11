@@ -6,13 +6,16 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/26 18:18:43 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/04/26 19:31:09 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/11 17:00:42 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include "Weapon.hpp"
+#ifndef __HUMANA_HPP__
+# define __HUMANA_HPP__
+
+# include <iostream>
+# include <string>
+# include "Weapon.hpp"
 
 class HumanA {
 public:
@@ -26,3 +29,5 @@ private:
 	std::string _name;
 	Weapon &_weapon;
 };
+
+#endif
