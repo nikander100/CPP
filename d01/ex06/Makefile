@@ -1,4 +1,4 @@
-NAME = runme
+NAME = harlFilter
 SRCS = main.cpp Harl.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++

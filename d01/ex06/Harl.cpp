@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/11 19:55:28 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/05/17 16:07:05 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/17 16:42:30 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,31 @@ void Harl::complain(std::string level) {
 	typedef void (Harl::*ComplainFunction)(void);
 	const std::string levels[4] = {"debug", "info", "warning", "error"};
 	const ComplainFunction functions[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	bool validLevel = false;
 
 	for (int i = 0; i < 4; i++) {
 		if (level == levels[i]) {
-			(this->*functions[i])();
-			return ;
+			validLevel = true;
+			switch (i) {
+				case 0: // debug
+					(this->*functions[0])();
+				case 1: // info
+					(this->*functions[1])();
+				case 2: // warning
+					(this->*functions[2])();
+				case 3: // error
+					(this->*functions[3])();
+					break;
+		}
+		break;
 		}
 	}
-	std::cout << BRIGHTRED << "[" << TEAL << _name << BRIGHTRED << "] "
-		<< "Invalid complaint level: " << level << RESET << std::endl;
+	
+	if (!validLevel) {
+		std::cout << BRIGHTRED << "[" << TEAL << _name << BRIGHTRED << "] "
+			<< "Invalid complaint level: " << level << RESET << std::endl;
+	}
+
 }
 
 void Harl::debug() {
