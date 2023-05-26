@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/05/17 17:02:47 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/05/26 16:13:35 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ static void	toContinue(void) {
 }
 
 int main() {
+	Fixed a;
+	toContinue();
+	Fixed b( a );
+	toContinue();
+	Fixed c;
+
+	toContinue();
+	c = b;
+
+	toContinue();
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+
 	toContinue();
 	return (0);
 }
