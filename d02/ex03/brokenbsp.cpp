@@ -10,6 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+// there is something wrong with this but I can't figure out what, math isn't my strongest point
+// I got close but my guess is I am miscalculating something somewhere, 
+// someone else showed me another way to approach this using another way of calculating it!
+
+
+
+
 #include "Point.hpp"
 
 bool bsp(Point const a, Point const b, Point const c, Point const point) {
