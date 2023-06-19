@@ -36,9 +36,10 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
 	Fixed invDenom = Fixed(1) / (dot00 * dot11 - dot01 * dot01);
 	Fixed u = (dot11 * dot02 - dot01 * dot12) * invDenom; //represents weigth of a to point
 	Fixed v = (dot00 * dot12 - dot01 * dot02) * invDenom; //represents weigth of b to point
+	Fixed w = Fixed(1) - u - v; //represents weigth of b to point
 	//The remaining weight (1-u-v) represents the contribution of c to point within the triangle. If the weight is negative point is outside of the triangle.
 
 	// Check if point is inside triangle
-	return (u >= Fixed(0)) && (v >= Fixed(0)) && (u + v < Fixed(1));
+	return (u >= Fixed(0)) && (v >= Fixed(0)) && (w >= Fixed(0));
 }
 
