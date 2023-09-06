@@ -6,21 +6,26 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/05 17:38:50 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/05 18:07:49 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/06 18:08:54 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-bool debug = false;
 
-ScavTrap::ScavTrap() : ClapTrap(), _hitPoints(100), _staminaPoints(50), _attackDamage(20), gatekeeper(false) {
+ScavTrap::ScavTrap() : ClapTrap(), gatekeeper(false) {
 	if (debug)
 		std::cout << "[DEBUG] ScavTrap default constructor called." << std::endl;
+	setHealth(100);
+	setStamina(50);
+	setAttackDamage(20);
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name), _hitPoints(100), _staminaPoints(50), _attackDamage(20), gatekeeper(false) {
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name), gatekeeper(false) {
 	if (debug)
-		std::cout << "[DEBUG] ScavTrap default constructor called." << std::endl;
+		std::cout << "[DEBUG] ScavTrap with name constructor called." << std::endl;
+	setHealth(100);
+	setStamina(50);
+	setAttackDamage(20);
 }
 
 ScavTrap::ScavTrap(const ScavTrap& fix) : ClapTrap(fix), gatekeeper(fix.gatekeeper) {
@@ -40,5 +45,5 @@ void ScavTrap::guardGate() {
 
 void ScavTrap::attack(const std::string& target) {
 	std::cout << "ScavTrap " << getName() << " attacks " << target;
-	std::cout << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
+	std::cout << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
 }

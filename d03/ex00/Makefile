@@ -1,5 +1,5 @@
 NAME = runme
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS = main.cpp ClapTrap.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
 FLAGS = -Wall -Werror -Wextra -pedantic

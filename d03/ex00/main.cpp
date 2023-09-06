@@ -6,12 +6,11 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/06 18:11:14 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/06/20 15:19:36 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 #include <iostream>
 
 #define RESET "\033[0m"
@@ -41,12 +40,9 @@ int main(int argc, char **argv) {
 		std::cout << BRIGHTRED <<"[INFO] " << RESET << "Run using `" << TEAL 
 			<<"./runme DEBUG=true" << RESET <<"` to enable constructor/destructor messages.";
 	}
-	
 	toContinue();
 	ClapTrap mandrake("Mandrake");
-
-	// Create a ScavTrap named "nika"
-	ScavTrap nika("Nika");
+	ClapTrap nika("Nika");
 
 	// Mandrake attacks Nika
 	mandrake.attack(nika.getName());
@@ -55,7 +51,6 @@ int main(int argc, char **argv) {
 
 	// Nika repairs itself
 	nika.beRepaired(10);
-	std::cout << "Nika now has [" << nika.getHealth() << "] hit points." << std::endl;
 	toContinue();
 
 	// Nika attacks Mandrake
@@ -65,14 +60,7 @@ int main(int argc, char **argv) {
 
 	// Mandrake attacks Nika again
 	mandrake.attack(nika.getName());
-	toContinue();
-
-	// Create a ScavTrap object
-	ScavTrap scav("Scav");
-
-	// ScavTrap enters gatekeeper mode
-	scav.guardGate();
-	toContinue();
+	nika.takeDamage(mandrake.getAttackDamage());
 
 	return (0);
 }
