@@ -6,26 +6,26 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/20 13:45:05 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/06 18:02:04 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/08 16:02:41 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 bool debug = false;
 
-ClapTrap::ClapTrap() : _name("HolyMoly"), _hitPoints(10), _staminaPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap() : _name("HolyMoly"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	if (debug)
 		std::cout << "[DEBUG] Default constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : _name(name), _hitPoints(10), _staminaPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap(const std::string &name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	if (debug)
 		std::cout << "[DEBUG] ClapTrap with Name constructor called." << std::endl;
 }
 
 
 ClapTrap::ClapTrap(const ClapTrap& fix) : _name(fix._name), _hitPoints(fix._hitPoints),
-					_staminaPoints(fix._staminaPoints), _attackDamage(fix._attackDamage) {
+					_energyPoints(fix._energyPoints), _attackDamage(fix._attackDamage) {
 	if (debug)
 		std::cout << "[DEBUG] Copy Constructor called." << std::endl;
 }
@@ -44,7 +44,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &right) {
 			std::cout << "Pass." << std::endl;
 		_name = right._name;
 		_hitPoints = right._hitPoints;
-		_staminaPoints = right._staminaPoints;
+		_energyPoints = right._energyPoints;
 		_attackDamage = right._attackDamage;
 	} else
 		if (debug)
@@ -68,7 +68,7 @@ unsigned int ClapTrap::getHealth() const {
 }
 
 unsigned int ClapTrap::getStamina() const {
-	return(_staminaPoints);
+	return(_energyPoints);
 }
 
 // =======
@@ -84,30 +84,30 @@ void ClapTrap::setHealth(unsigned int healthVal) {
 }
 
 void ClapTrap::setStamina(unsigned int staminaVal) {
-	_staminaPoints = staminaVal;
+	_energyPoints = staminaVal;
 }
 
 // Attack function
 void ClapTrap::attack(const std::string& target) {
-	if (_hitPoints <= 0 || _staminaPoints <= 0) {
+	if (_hitPoints <= 0 || _energyPoints <= 0) {
 		std::cout << "ClapTrap " << _name << " cannot attack. It has no hit points or stamina left." << std::endl;
 		return;
 	}
 
 	std::cout << "ClapTrap " << _name << " attacks " << target << " causing " << _attackDamage << " points of damage!" << std::endl;
-	_staminaPoints -= 1;
+	_energyPoints -= 1;
 }
 
 // Be repaired function
 void ClapTrap::beRepaired(unsigned int amount) {
-	if (_hitPoints <= 0 || _staminaPoints <= 0) {
+	if (_hitPoints <= 0 || _energyPoints <= 0) {
 		std::cout << "ClapTrap " << _name << " cannot be repaired. It has no hit points or stamina left." << std::endl;
 		return;
 	}
 
 	std::cout << "ClapTrap " << _name << " is repaired for " << amount << " hit points!" << std::endl;
 	_hitPoints += amount;
-	_staminaPoints -= 1;
+	_energyPoints -= 1;
 }
 
 // Take damage function

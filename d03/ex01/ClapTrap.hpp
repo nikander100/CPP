@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/20 13:41:05 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/06 17:29:30 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/08 16:02:13 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ public:
 private:
 	std::string _name;
 	unsigned int _hitPoints;
-	unsigned int _staminaPoints;
+	unsigned int _energyPoints;
 	unsigned int _attackDamage;
 
 };
