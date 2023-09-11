@@ -6,14 +6,15 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/08 16:24:03 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/11 15:58:30 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
-#include <iostream>
+#include "DiamondTrap.hpp"
 
 #define RESET "\033[0m"
 #define GREEN "\033[1;32m"
@@ -81,6 +82,22 @@ int main(int argc, char **argv) {
 	// FragTrap gives a high five
 	frag.highFivesGuy();
 	toContinue();
+
+	// Create a DiamondTrap object "Diamond"
+	DiamondTrap diamond("Diamond");
+
+	// DiamondTrap attacks Nika (uses ScavTrap's attack)
+	diamond.attack(nika.getName());
+	nika.takeDamage(diamond.getAttackDamage());
+	toContinue();
+
+	// Nika repairs itself again
+	nika.beRepaired(20);
+	std::cout << "Nika now has [" << nika.getHealth() << "] hit points." << std::endl;
+	toContinue();
+
+	// DiamondTrap states who they are.
+	diamond.WhoAmI();
 	
 	return (0);
 }

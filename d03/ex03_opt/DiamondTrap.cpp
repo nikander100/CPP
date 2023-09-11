@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/08 16:40:29 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/08 17:18:03 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/11 16:06:08 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ DiamondTrap::~DiamondTrap() {
 }
 
 void DiamondTrap::WhoAmI() {
-	std::cout << "<< I Am " << _name << " and My Granfather was " << ClapTrap::getName() << std::endl;
+	std::cout << "I Am " << _name << " and My Godfather was " << ClapTrap::getName() << std::endl;
 }
 
 void DiamondTrap::attack(const std::string& target) {
 	ScavTrap::attack(target);
 }
-s
