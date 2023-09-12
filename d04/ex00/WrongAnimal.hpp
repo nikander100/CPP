@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Cat.hpp                                            :+:    :+:            */
+/*   WrongAnimal.hpp                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/11 18:17:34 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/12 18:18:53 by nvan-der      ########   odam.nl         */
+/*   Created: 2023/09/12 18:20:28 by nvan-der      #+#    #+#                 */
+/*   Updated: 2023/09/12 18:29:12 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP__
-# define __CAT_HPP__
+#ifndef __WRONGANIMAL_HPP__
+# define __WRONGANIMAL_HPP__
 
-# include "Animal.hpp"
+# include <iostream>
 
-class Cat : public Animal {
+class WrongAnimal {
 public:
-	Cat();
-	Cat(const Cat &copy);
-	~Cat();
+	WrongAnimal();
+	WrongAnimal(const WrongAnimal &copy);
+	~WrongAnimal();
 	// Assignment Operator
-	Cat &operator = (const Cat &right);
+	WrongAnimal &operator = (const WrongAnimal &right);
 
-	virtual void makeSound() const;
+	void makeSound() const;
+
+	// Getters
+	std::string getType() const;
+
+protected:
+	std::string type;
 };
 
 #endif

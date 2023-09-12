@@ -6,11 +6,16 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/11 18:31:49 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/12 18:31:38 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 bool debug = false;
 
@@ -38,11 +43,28 @@ int main(int argc, char **argv) {
 	}
 	else {
 		std::cout << BRIGHTRED <<"[INFO] " << RESET << "DEBUG == False" << std::endl;
-		// std::cout << BRIGHTRED <<"[INFO] " << RESET << "Run using `" << TEAL 
-		// 	<<"./runme DEBUG=true" << RESET <<"` to enable constructor/destructor messages.";
+		std::cout << BRIGHTRED <<"[INFO] " << RESET << "Run using `" << TEAL 
+			<<"./runme DEBUG=true" << RESET <<"` to enable constructor/destructor messages.";
 	}
 	
 	toContinue();
+	const Animal* meta = new Animal();
+	const Animal* i = new Cat();
+	const Animal* j = new Dog();
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound(); //will output the cat sound!
+	j->makeSound();
+	meta->makeSound();
+
+	toContinue();
+	const WrongAnimal* x = new WrongCat();
+	x->makeSound(); //will output the WrongAnimal sound!
+
+	delete i;
+	delete j;
+	delete x;
+	delete meta;
 	
 	return (0);
 }

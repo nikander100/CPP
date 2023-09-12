@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Cat.hpp                                            :+:    :+:            */
+/*   WrongCat.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/09/11 18:17:34 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/12 18:18:53 by nvan-der      ########   odam.nl         */
+/*   Created: 2023/09/12 18:24:20 by nvan-der      #+#    #+#                 */
+/*   Updated: 2023/09/12 18:26:25 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __CAT_HPP__
-# define __CAT_HPP__
+#ifndef __WRONGCAT_HPP__
+# define __WRONGCAT_HPP__
 
-# include "Animal.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal {
+class WrongCat : public WrongAnimal {
 public:
-	Cat();
-	Cat(const Cat &copy);
-	~Cat();
+	WrongCat();
+	WrongCat(const WrongCat &copy);
+	~WrongCat();
 	// Assignment Operator
-	Cat &operator = (const Cat &right);
+	WrongCat &operator = (const WrongCat &right);
 
-	virtual void makeSound() const;
+	void makeSound() const;
 };
 
 #endif

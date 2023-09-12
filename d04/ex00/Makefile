@@ -1,8 +1,8 @@
 NAME = runme
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
-FLAGS = -Wall -Werror -Wextra -pedantic
+FLAGS = -Wall -Werror -Wextra
 INC_DIR = .
 INC = -I$(INC_DIR)
 
