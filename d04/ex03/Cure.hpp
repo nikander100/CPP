@@ -6,7 +6,21 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/22 18:59:11 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/22 18:59:11 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/26 19:08:54 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "AMateria.hpp"
+
+class Cure : public AMateria
+{
+	public:
+		Cure();
+		Cure(const Cure &other);
+		~Cure();
+		// Assignment Operator
+		Cure &Cure::operator=(const Cure &right);
+
+		AMateria *clone() const;
+		void use(ICharacter &target);
+};
