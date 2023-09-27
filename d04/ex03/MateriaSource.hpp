@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/22 18:59:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/27 18:27:09 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/27 19:53:15 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class MateriaSource : public IMateriaSource {
 		MateriaSource(const MateriaSource &other);
 		~MateriaSource();
 
-		MateriaSource &MateriaSource::operator=(const MateriaSource &right);
+		MateriaSource &operator=(const MateriaSource &right);
 		void learnMateria(AMateria *);
 		AMateria* createMateria(const std::string &type);
 	

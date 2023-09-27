@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/27 19:47:12 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/27 19:56:42 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ static void toContinue(void) {
 	std::getchar();
 }
 
-int main(int argc, char **argv) {
+int main() {
 
 	IMateriaSource* grimoire = new MateriaSource();
 	grimoire->learnMateria(new Ice());
-	grimoire->learnMateria(new Cure());
 	grimoire->learnMateria(new Cure());
 
 	ICharacter* me = new Character("me");
@@ -55,16 +54,16 @@ int main(int argc, char **argv) {
 	me->use(0, *asta);
 	me->use(1, *asta);
 	asta->use(0, *me);
-
+	toContinue();
 	me->unequip(1);
 	me->equip(NULL);
 	me->equip(grimoire->createMateria("cure"));
 	me->use(1, *asta);
-
+	toContinue();
 	ICharacter* yami = new Character("yami");
 	me->use(0, *yami);
 	yami->use(0, *me);
-
+	toContinue();
 	delete asta;
 	delete me;
 	delete yami;
