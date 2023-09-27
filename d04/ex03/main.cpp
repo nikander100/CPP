@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/27 19:42:22 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/27 19:47:12 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,40 @@ static void toContinue(void) {
 
 int main(int argc, char **argv) {
 
-	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
+	IMateriaSource* grimoire = new MateriaSource();
+	grimoire->learnMateria(new Ice());
+	grimoire->learnMateria(new Cure());
+	grimoire->learnMateria(new Cure());
 
 	ICharacter* me = new Character("me");
 
 	AMateria* tmp;
-	tmp = src->createMateria("ice");
+	tmp = grimoire->createMateria("ice");
 	me->equip(tmp);
-	tmp = src->createMateria("cure");
+	tmp = grimoire->createMateria("cure");
 	me->equip(tmp);
 
-	ICharacter* bob = new Character("bob");
-	tmp = src->createMateria("ice");
-	bob->equip(tmp);
+	ICharacter* asta = new Character("asta");
+	tmp = grimoire->createMateria("ice");
+	asta->equip(tmp);
 
-	me->use(0, *bob);
-	me->use(1, *bob);
-	bob->use(0, *me);
+	me->use(0, *asta);
+	me->use(1, *asta);
+	asta->use(0, *me);
 
 	me->unequip(1);
 	me->equip(NULL);
-	me->equip(src->createMateria("cure"));
-	me->use(1, *bob);
+	me->equip(grimoire->createMateria("cure"));
+	me->use(1, *asta);
 
-	ICharacter* john = new Character("john");
-	me->use(0, *john);
-	john->use(0, *me);
+	ICharacter* yami = new Character("yami");
+	me->use(0, *yami);
+	yami->use(0, *me);
 
-	delete bob;
+	delete asta;
 	delete me;
-	delete src;
+	delete yami;
+	delete grimoire;
 
 	return (0);
 }
