@@ -1,19 +1,24 @@
 NAME = runme
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = AMateria.cpp \
+		Character.cpp \
+		Cure.cpp \
+		Ice.cpp \
+		MateriaSource.cpp \
+		main.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
-FLAGS = -Wall -Werror -Wextra
 INC_DIR = .
 INC = -I$(INC_DIR)
+FLAGS = -Wall -Werror -Wextra $(INC)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(INC) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 obj/%.o: %.cpp $(INCLUDE)
 	mkdir -p obj
-	$(CC) -I. -c $(FLAGS) $(INC) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf obj/

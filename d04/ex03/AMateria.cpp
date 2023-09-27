@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/22 18:59:05 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/26 18:58:27 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/27 19:28:23 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ AMateria &AMateria::operator=(const AMateria &right) {
 AMateria::~AMateria(){
 }
 
-std::string AMateria::getType() const {
+std::string const &AMateria::getType() const {
 	return (_type);
 }
 

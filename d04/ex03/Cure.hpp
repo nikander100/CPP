@@ -6,9 +6,11 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/22 18:59:11 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/26 19:08:54 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/09/27 19:35:34 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include "AMateria.hpp"
 
