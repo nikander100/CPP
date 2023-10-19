@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/18 18:17:35 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/10/18 18:31:43 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/10/19 17:21:16 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,27 @@ public:
 	Bureaucrat(Bureaucrat const &copy);
 	~Bureaucrat();
 
-	Bureaucrat&		operator=(Bureaucrat const &other);
+	Bureaucrat& operator=(Bureaucrat const &right);
 
 	// Getters
-	std::string		getName() const;
-	unsigned int	getGrade() const;
+	std::string getName() const;
+	unsigned int getGrade() const;
 
 	// Crementers
-	void			incrementGrade();
-	void			decrementGrade();
+	void incrementGrade();
+	void decrementGrade();
 
 	class GradeTooHighException : public std::exception
-	{};
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	
 	class GradeTooLowException : public std::exception
-	{};
+	{
+	public:
+		virtual const char *what() const throw();
+	};
 
 private:
 	std::string		_name;
