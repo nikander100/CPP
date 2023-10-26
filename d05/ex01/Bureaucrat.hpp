@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/18 18:17:35 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/10/26 20:52:54 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/10/26 20:48:53 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 
+class Form;
 class Bureaucrat
 {
 public:
@@ -31,6 +32,7 @@ public:
 	// Crementers
 	void incrementGrade();
 	void decrementGrade();
+	void signForm(Form &form) const;
 
 	class GradeTooHighException : public std::exception
 	{

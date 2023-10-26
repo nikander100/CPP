@@ -1,5 +1,5 @@
 NAME = runme
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
 FLAGS = -Wall -Werror -Wextra

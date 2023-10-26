@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Bureaucrat.hpp                                     :+:    :+:            */
+/*   Form.hpp                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/18 18:17:35 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/10/26 20:52:54 by nvan-der      ########   odam.nl         */
+/*   Created: 2023/10/26 19:14:13 by nvan-der      #+#    #+#                 */
+/*   Updated: 2023/10/26 20:19:24 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #include <iostream>
 #include <string>
 
-class Bureaucrat
+class Bureaucrat;
+class Form
 {
 public:
-	Bureaucrat();
-	Bureaucrat(const std::string &name, unsigned int grade);
-	Bureaucrat(const Bureaucrat &copy);
-	~Bureaucrat();
+	Form();
+	Form(const std::string &name);
+	Form(const std::string &name, unsigned int signGrade, unsigned int execGrade);
+	Form(const Form &copy);
+	~Form();
 
-	Bureaucrat& operator=(const Bureaucrat &right);
+	Form &operator=(const Form &right);
 
-	// Getters
 	std::string getName() const;
-	unsigned int getGrade() const;
+	bool getSigned() const;
+	unsigned int getSignGrade() const;
+	unsigned int getExecGrade() const;
 
-	// Crementers
-	void incrementGrade();
-	void decrementGrade();
+	void beSigned(const Bureaucrat &candidate);
 
 	class GradeTooHighException : public std::exception
 	{
@@ -44,9 +44,17 @@ public:
 		virtual const char *what() const throw();
 	};
 
+	class AlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+
 private:
-	std::string		_name;
-	unsigned int	_grade;
+	std::string const _name;
+	bool _signed;
+	unsigned int const _signGrade;
+	unsigned int const _execGrade;
 };
 
-std::ostream&	operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
+std::ostream	&operator<<(std::ostream &out, const Form &form);
