@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/10/26 20:44:47 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/03 19:15:07 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,47 +49,46 @@ int main() {
 
 
 	std::cout << john << std::endl;
+	toContinue();
 
-	try
-	{
+	try {
 		john.incrementGrade();
 		john.incrementGrade();
 		std::cout << john << std::endl;
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	
-	try
-	{
+	toContinue();
+	try {
 		Form test("test", 151, 42);
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Cannot initialize test because " << e.what() << std::endl;
+	catch(const std::exception& e) {
+		std::cerr << "Cannot initialize test: " << e.what() << std::endl;
 	}
 
+	toContinue();
 	Form a("a");
 	Form b("b", 3, 3);
 	Form c("c", 3, 20);
 	std::cout << john << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
+	toContinue();
 	john.signForm(a);
 	john.signForm(b);
 	john.signForm(b);
 	
-	try
-	{
+	toContinue();
+	try {
 		john.decrementGrade();
 		std::cout << john << std::endl;
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
 	
+	toContinue();
 	john.signForm(c);
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;

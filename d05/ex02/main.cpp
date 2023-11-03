@@ -6,16 +6,13 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/21 19:02:50 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/03 19:15:07 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 bool debug = false;
 
@@ -33,38 +30,67 @@ static void toContinue(void) {
 	std::getchar();
 }
 
-int main(int argc, char **argv) {
-	if (argc > 1) {
-		std::string arg = argv[1];
-		if (arg == "DEBUG=true") {
-			std::cout << BRIGHTRED <<"[INFO] " << RESET << "DEBUG == true";
-			debug = true;
-		}
+int main() {
+	// if (argc > 1) {
+	// 	std::string arg = argv[1];
+	// 	if (arg == "DEBUG=true") {
+	// 		std::cout << BRIGHTRED <<"[INFO] " << RESET << "DEBUG == true";
+	// 		debug = true;
+	// 	}
+	// }
+	// else {
+	// 	std::cout << BRIGHTRED <<"[INFO] " << RESET << "DEBUG == False" << std::endl;
+	// 	std::cout << BRIGHTRED <<"[INFO] " << RESET << "Run using `" << TEAL 
+	// 		<<"./runme DEBUG=true" << RESET <<"` to enable constructor/destructor messages.";
+	// }
+	
+	toContinue();
+	Bureaucrat john("John", 5);
+
+
+	std::cout << john << std::endl;
+	toContinue();
+
+	try {
+		john.incrementGrade();
+		john.incrementGrade();
+		std::cout << john << std::endl;
 	}
-	else {
-		std::cout << BRIGHTRED <<"[INFO] " << RESET << "DEBUG == False" << std::endl;
-		std::cout << BRIGHTRED <<"[INFO] " << RESET << "Run using `" << TEAL 
-			<<"./runme DEBUG=true" << RESET <<"` to enable constructor/destructor messages.";
+	catch(const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+	}
+	toContinue();
+	try {
+		Form test("test", 151, 42);
+	}
+	catch(const std::exception& e) {
+		std::cerr << "Cannot initialize test: " << e.what() << std::endl;
+	}
+
+	toContinue();
+	Form a("a");
+	Form b("b", 3, 3);
+	Form c("c", 3, 20);
+	std::cout << john << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	toContinue();
+	john.signForm(a);
+	john.signForm(b);
+	john.signForm(b);
+	
+	toContinue();
+	try {
+		john.decrementGrade();
+		std::cout << john << std::endl;
+	}
+	catch(const std::exception& e) {
+		std::cerr << e.what() << std::endl;
 	}
 	
 	toContinue();
-	// const AAnimal* meta = new AAnimal();
-	const AAnimal* i = new Cat();
-	const AAnimal* j = new Dog();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	// meta->makeSound();
-
-	toContinue();
-	const WrongAnimal* x = new WrongCat();
-	x->makeSound(); //will output the WrongAnimal sound!
-
-	delete i;
-	delete j;
-	delete x;
-	// delete meta;
-	
-	return (0);
+	john.signForm(c);
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
 }
