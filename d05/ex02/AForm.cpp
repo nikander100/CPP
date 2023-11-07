@@ -6,21 +6,33 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 20:05:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/03 20:44:19 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/07 19:46:46 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm() : _name("defaultForm"), _signed(false), _signGrade(1), _execGrade(1) {
+AForm::AForm() : _name("defaultForm"), _signGrade(1), _execGrade(1), _signed(false) {
 }
 
-AForm::AForm(const std::string &name) : _name(name), _signed(false), _signGrade(1), _execGrade(1) {
+AForm::AForm(const std::string &name) : _name(name), _signGrade(1), _execGrade(1), _signed(false) {
+}
+
+AForm::AForm(const std::string& name, const std::string& target)
+	: _name(name), _target(target), _signGrade(1), _execGrade(1), _signed(false) {
 }
 
 AForm::AForm(const std::string &name, const unsigned int signGrade, const unsigned int execGrade)
-	: _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {
+	: _name(name), _signGrade(signGrade), _execGrade(execGrade), _signed(false) {
+	if (signGrade > 150 || execGrade > 150)
+		throw AForm::GradeTooLowException();
+	else if (signGrade < 1 || execGrade < 1)
+		throw AForm::GradeTooHighException();
+}
+
+AForm::AForm(const std::string &name, const std::string &target, const unsigned int signGrade, const unsigned int execGrade)
+	: _name(name), _target(target), _signGrade(signGrade), _execGrade(execGrade), _signed(false) {
 	if (signGrade > 150 || execGrade > 150)
 		throw AForm::GradeTooLowException();
 	else if (signGrade < 1 || execGrade < 1)
@@ -28,7 +40,7 @@ AForm::AForm(const std::string &name, const unsigned int signGrade, const unsign
 }
 
 AForm::AForm(const AForm &copy)
-	: _name(copy._name), _signed(copy._signed), _signGrade(copy._signGrade), _execGrade(copy._execGrade) {
+	: _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._execGrade), _signed(copy._signed) {
 }
 
 AForm::~AForm() {
@@ -76,7 +88,7 @@ void AForm::beSigned(const Bureaucrat &candidate) {
 void AForm::execute(const Bureaucrat &executor) const {
 	if (_signed) {
 		if (executor.getGrade() <= _execGrade)
-			action();
+			action(executor);
 		else
 			throw AForm::GradeTooLowException();
 	}

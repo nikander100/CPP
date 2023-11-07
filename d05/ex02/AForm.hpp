@@ -6,9 +6,11 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 19:14:13 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/03 20:16:22 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/07 19:33:26 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -37,7 +39,7 @@ public:
 	// Functions
 	void beSigned(const Bureaucrat &candidate);
 	void execute(const Bureaucrat &executor) const;
-	virtual void action() const = 0;
+	virtual void action(const Bureaucrat &executer) const = 0;
 
 	// Exceptions
 	class GradeTooHighException : public std::exception

@@ -6,13 +6,16 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/03 19:15:07 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/07 19:31:37 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "AForm.hpp"
 
 bool debug = false;
 
@@ -31,6 +34,7 @@ static void toContinue(void) {
 }
 
 int main() {
+	srand(time(NULL));
 	// if (argc > 1) {
 	// 	std::string arg = argv[1];
 	// 	if (arg == "DEBUG=true") {
@@ -46,51 +50,54 @@ int main() {
 	
 	toContinue();
 	Bureaucrat john("John", 5);
-
+	Bureaucrat jim("Jim", 45);
+	Bureaucrat jane("Jane", 137);
 
 	std::cout << john << std::endl;
-	toContinue();
+	std::cout << jim << std::endl;
+	std::cout << jane << std::endl;
 
-	try {
-		john.incrementGrade();
-		john.incrementGrade();
-		std::cout << john << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	toContinue();
-	try {
-		Form test("test", 151, 42);
-	}
-	catch(const std::exception& e) {
-		std::cerr << "Cannot initialize test: " << e.what() << std::endl;
-	}
+	ShrubberyCreationForm shrubbery("home");
+	PresidentialPardonForm pardon("Stephen Bannon");
+	RobotomyRequestForm robotomy("Bender");
 
-	toContinue();
-	Form a("a");
-	Form b("b", 3, 3);
-	Form c("c", 3, 20);
-	std::cout << john << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	toContinue();
-	john.signForm(a);
-	john.signForm(b);
-	john.signForm(b);
-	
-	toContinue();
-	try {
-		john.decrementGrade();
-		std::cout << john << std::endl;
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	
-	toContinue();
-	john.signForm(c);
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << c << std::endl;
+	john.executeForm(shrubbery);
+	jim.executeForm(shrubbery);
+	jane.executeForm(shrubbery);
+	std::cout << std::endl;
+	john.signForm(shrubbery);
+	jim.signForm(shrubbery);
+	jane.signForm(shrubbery);
+	std::cout << std::endl;
+	john.executeForm(shrubbery);
+	jim.executeForm(shrubbery);
+	jane.executeForm(shrubbery);
+	std::cout << std::endl;
+	std::cout << "-------------------------------------------------------" << std::endl;
+	std::cout << std::endl;
+	john.executeForm(pardon);
+	jim.executeForm(pardon);
+	jane.executeForm(pardon);
+	std::cout << std::endl;
+	john.signForm(pardon);
+	jim.signForm(pardon);
+	jane.signForm(pardon);
+	std::cout << std::endl;
+	john.executeForm(pardon);
+	jim.executeForm(pardon);
+	jane.executeForm(pardon);
+	std::cout << std::endl;
+	std::cout << "-------------------------------------------------------" << std::endl;
+	std::cout << std::endl;
+	john.executeForm(robotomy);
+	jim.executeForm(robotomy);
+	jane.executeForm(robotomy);
+	std::cout << std::endl;
+	john.signForm(robotomy);
+	jim.signForm(robotomy);
+	jane.signForm(robotomy);
+	std::cout << std::endl;
+	john.executeForm(robotomy);
+	jim.executeForm(robotomy);
+	jane.executeForm(robotomy);
 }

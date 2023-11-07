@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/19 17:04:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/03 20:09:14 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/07 19:26:40 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,16 @@ void Bureaucrat::signForm(AForm &form) const {
 	}
 	catch (std::exception &e) {
 		std::cerr << _name << " cannot sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(const AForm &form) const {
+	try {
+		form.execute(*this);
+		std::cout << _name << " executes " << form.getName() << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cerr << _name << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 
