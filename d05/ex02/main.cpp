@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/07 19:31:37 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/08 19:18:10 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,55 +49,68 @@ int main() {
 	// }
 	
 	toContinue();
-	Bureaucrat john("John", 5);
-	Bureaucrat jim("Jim", 45);
-	Bureaucrat jane("Jane", 137);
+	std::cout << BLUE << "[INFO]: " << RESET << "Bureaucrats:" << std::endl;
+	Bureaucrat klee("Klee", 5);
+	Bureaucrat hutao("Hu Tao", 45);
+	Bureaucrat paimon("Paimon", 137);
 
-	std::cout << john << std::endl;
-	std::cout << jim << std::endl;
-	std::cout << jane << std::endl;
+	std::cout << klee;
+	std::cout << hutao;
+	std::cout << paimon;
 
 	ShrubberyCreationForm shrubbery("home");
 	PresidentialPardonForm pardon("Stephen Bannon");
 	RobotomyRequestForm robotomy("Bender");
 
-	john.executeForm(shrubbery);
-	jim.executeForm(shrubbery);
-	jane.executeForm(shrubbery);
-	std::cout << std::endl;
-	john.signForm(shrubbery);
-	jim.signForm(shrubbery);
-	jane.signForm(shrubbery);
-	std::cout << std::endl;
-	john.executeForm(shrubbery);
-	jim.executeForm(shrubbery);
-	jane.executeForm(shrubbery);
-	std::cout << std::endl;
-	std::cout << "-------------------------------------------------------" << std::endl;
-	std::cout << std::endl;
-	john.executeForm(pardon);
-	jim.executeForm(pardon);
-	jane.executeForm(pardon);
-	std::cout << std::endl;
-	john.signForm(pardon);
-	jim.signForm(pardon);
-	jane.signForm(pardon);
-	std::cout << std::endl;
-	john.executeForm(pardon);
-	jim.executeForm(pardon);
-	jane.executeForm(pardon);
-	std::cout << std::endl;
-	std::cout << "-------------------------------------------------------" << std::endl;
-	std::cout << std::endl;
-	john.executeForm(robotomy);
-	jim.executeForm(robotomy);
-	jane.executeForm(robotomy);
-	std::cout << std::endl;
-	john.signForm(robotomy);
-	jim.signForm(robotomy);
-	jane.signForm(robotomy);
-	std::cout << std::endl;
-	john.executeForm(robotomy);
-	jim.executeForm(robotomy);
-	jane.executeForm(robotomy);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Executing ShrubberyCreationForm:" << std::endl;
+	klee.executeForm(shrubbery);
+	hutao.executeForm(shrubbery);
+	paimon.executeForm(shrubbery);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Signing ShrubberyCreationForm:" << std::endl;
+	klee.signForm(shrubbery);
+	hutao.signForm(shrubbery);
+	paimon.signForm(shrubbery);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Executing ShrubberyCreationForm again:" << std::endl;
+	klee.executeForm(shrubbery);
+	hutao.executeForm(shrubbery);
+	paimon.executeForm(shrubbery);
+
+	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Executing PresidentialPardonForm:" << std::endl;
+	klee.executeForm(pardon);
+	hutao.executeForm(pardon);
+	paimon.executeForm(pardon);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Signing PresidentialPardonForm:" << std::endl;
+	klee.signForm(pardon);
+	hutao.signForm(pardon);
+	paimon.signForm(pardon);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Executing PresidentialPardonForm again:" << std::endl;
+	klee.executeForm(pardon);
+	hutao.executeForm(pardon);
+	paimon.executeForm(pardon);
+
+	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Executing RobotomyRequestForm:" << std::endl;
+	klee.executeForm(robotomy);
+	hutao.executeForm(robotomy);
+	paimon.executeForm(robotomy);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Signing RobotomyRequestForm:" << std::endl;
+	klee.signForm(robotomy);
+	hutao.signForm(robotomy);
+	paimon.signForm(robotomy);
+	toContinue();
+	std::cout << BLUE << "[INFO]: " << RESET << "Executing RobotomyRequestForm again:" << std::endl;
+	klee.executeForm(robotomy);
+	hutao.executeForm(robotomy);
+	paimon.executeForm(robotomy);
 }

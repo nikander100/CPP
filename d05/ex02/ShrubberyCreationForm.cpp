@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/07 19:01:48 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/07 19:39:52 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/08 18:14:59 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void ShrubberyCreationForm::action(const Bureaucrat &) const {
 	file << "      ||      " << std::endl;
 	file << "      ||      " << std::endl;
 	file << "      ||      " << std::endl;
-	file << "\\//_/||__/ \\" << std::endl;
+	file << " \\//_/||__/ \\" << std::endl;
 }
