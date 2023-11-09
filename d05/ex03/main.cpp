@@ -6,16 +6,17 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/27 19:56:42 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/08 20:40:54 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "IMateriaSource.hpp"
-#include "MateriaSource.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
-#include "Character.hpp"
+#include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "AForm.hpp"
+#include "Intern.hpp"
 
 bool debug = false;
 
@@ -34,40 +35,97 @@ static void toContinue(void) {
 }
 
 int main() {
-
-	IMateriaSource* grimoire = new MateriaSource();
-	grimoire->learnMateria(new Ice());
-	grimoire->learnMateria(new Cure());
-
-	ICharacter* me = new Character("me");
-
-	AMateria* tmp;
-	tmp = grimoire->createMateria("ice");
-	me->equip(tmp);
-	tmp = grimoire->createMateria("cure");
-	me->equip(tmp);
-
-	ICharacter* asta = new Character("asta");
-	tmp = grimoire->createMateria("ice");
-	asta->equip(tmp);
-
-	me->use(0, *asta);
-	me->use(1, *asta);
-	asta->use(0, *me);
+	srand(time(NULL));
+	
 	toContinue();
-	me->unequip(1);
-	me->equip(NULL);
-	me->equip(grimoire->createMateria("cure"));
-	me->use(1, *asta);
-	toContinue();
-	ICharacter* yami = new Character("yami");
-	me->use(0, *yami);
-	yami->use(0, *me);
-	toContinue();
-	delete asta;
-	delete me;
-	delete yami;
-	delete grimoire;
 
-	return (0);
+	Bureaucrat diluc("Diluc", 5);
+	Bureaucrat zhongli("Zhongli", 45);
+	Bureaucrat keqing("Keqing", 137);
+
+	std::cout << BLUE << "[INFO] " << RESET << "Created bureaucrats:" << std::endl;
+	std::cout << diluc << std::endl;
+	std::cout << zhongli << std::endl;
+	std::cout << keqing << std::endl;
+
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Creating Intern and empty Forms" << std::endl;
+
+	Intern intern;
+
+	AForm* formA;
+	AForm* formB;
+	AForm* formC;
+	AForm* formD;
+
+	std::cout << BLUE << "[INFO] " << RESET << "Trying to create forms:" << std::endl;
+	try
+	{
+		formA = intern.makeForm("shrubbery creation", "home");
+		formB = intern.makeForm("robotomy request", "Bender");
+		formC = intern.makeForm("presidential pardon", "Stephen Bannon");
+		formD = intern.makeForm("test", "test");
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Executing form A:" << std::endl;
+	diluc.executeForm(*formA);
+	zhongli.executeForm(*formA);
+	keqing.executeForm(*formA);
+	
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Signing form A:" << std::endl;
+	diluc.signForm(*formA);
+	zhongli.signForm(*formA);
+	keqing.signForm(*formA);
+	
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Executing form A again:" << std::endl;
+	diluc.executeForm(*formA);
+	zhongli.executeForm(*formA);
+	keqing.executeForm(*formA);
+	
+
+	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Executing form B:" << std::endl;
+	diluc.executeForm(*formB);
+	zhongli.executeForm(*formB);
+	keqing.executeForm(*formB);
+	
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Signing form B:" << std::endl;
+	diluc.signForm(*formB);
+	zhongli.signForm(*formB);
+	keqing.signForm(*formB);
+	
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Executing form B again:" << std::endl;
+	diluc.executeForm(*formB);
+	zhongli.executeForm(*formB);
+	keqing.executeForm(*formB);
+	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Executing form C:" << std::endl;
+	diluc.executeForm(*formC);
+	zhongli.executeForm(*formC);
+	keqing.executeForm(*formC);
+
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Signing form C:" << std::endl;
+	diluc.signForm(*formC);
+	zhongli.signForm(*formC);
+	keqing.signForm(*formC);
+
+	toContinue();
+	std::cout << BLUE << "[INFO] " << RESET << "Executing form C again:" << std::endl;
+	diluc.executeForm(*formC);
+	zhongli.executeForm(*formC);
+	keqing.executeForm(*formC);
 }

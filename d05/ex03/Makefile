@@ -1,30 +1,26 @@
 NAME = runme
-SRCS = AMateria.cpp \
-		Character.cpp \
-		Cure.cpp \
-		Ice.cpp \
-		MateriaSource.cpp \
-		main.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
 CC = clang++
+FLAGS = -Wall -Werror -Wextra
 INC_DIR = .
 INC = -I$(INC_DIR)
-FLAGS = -Wall -Werror -Wextra $(INC)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(INC) $(OBJS) -o $(NAME)
 
 obj/%.o: %.cpp $(INCLUDE)
 	mkdir -p obj
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) -I. -c $(FLAGS) $(INC) -c $< -o $@
 
 clean:
 	rm -rf obj/
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f *_shrubbery
 
 re: fclean all
 
