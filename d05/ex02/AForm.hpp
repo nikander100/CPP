@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 19:14:13 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/07 19:33:26 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/16 00:02:40 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ public:
 	};
 
 	class AlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+
+	class NotSignedException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();

@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 20:05:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/07 19:46:46 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/16 00:06:44 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void AForm::execute(const Bureaucrat &executor) const {
 			throw AForm::GradeTooLowException();
 	}
 	else
-		throw AForm::AlreadySignedException();
+		throw AForm::NotSignedException();
 }
 
 const char *AForm::GradeTooHighException::what() const throw() {
@@ -106,6 +106,10 @@ const char *AForm::GradeTooLowException::what() const throw() {
 
 const char *AForm::AlreadySignedException::what() const throw() {
 	return ("Form is already signed.");
+}
+
+const char *AForm::NotSignedException::what() const throw() {
+	return ("Form is not signed.");
 }
 
 std::ostream	&operator<<(std::ostream &out, const AForm &form) {
