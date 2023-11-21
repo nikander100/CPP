@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/17 17:18:55 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/17 17:56:22 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/11/21 19:35:22 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ public:
 	
 private:
 	bool isNumber(const std::string &input);
-	bool num;
-	double intVal;
+	bool _num;
+	double _intVal;
 	ScalarConverter();
 };
 
