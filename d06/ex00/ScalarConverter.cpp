@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/17 17:18:52 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/22 20:42:10 by nvan-der      ########   odam.nl         */
+/*   Updated: 2023/12/12 17:46:37 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,37 @@ ScalarConverter::ScalarConverter() {
 
 ScalarConverter::ScalarConverter(const std::string &input) : _num(false) {
 	_num = isNumber(input);
-	if (input == "nan" || input == "nanf"
-		|| input == "+inf" || input == "+inff"
-		|| input == "-inf" || input == "-inff")
+	if (input == "nan" || input == "nanf") {
 		_num = true;
-	if (!_num) {
-		if (!input.empty()) {
-			_intVal = static_cast<double>(input[0]);
-		} else {
+		_intVal = std::numeric_limits<double>::quiet_NaN();
+	} else if (input == "+inf" || input == "+inff"
+			|| input == "-inf" || input == "-inff") {
+		_num = true;
+		_intVal = std::numeric_limits<double>::infinity();
+	} else if (input.length() == 1 && !_num) {
+		_intVal = static_cast<double>(input[0]);
+	} else if (!input.empty()) {
+		try {
+			size_t pos = 0;
+			_intVal = std::stod(input, &pos);
+			if (pos != input.length()) {
+				if (input[pos] == 'f') {
+					_intVal = static_cast<float>(_intVal);
+					pos++;
+				} else {
+					throw InvalidInputException();
+				}
+			}
+			if (pos != input.length()) {
+				throw InvalidInputException();
+			}
+		} catch (const std::invalid_argument &) {
+			throw InvalidInputException();
+		} catch (const std::out_of_range &) {
 			throw InvalidInputException();
 		}
 	} else {
-		_intVal = std::stod(input);
+		throw InvalidInputException();
 	}
 }
 
@@ -72,14 +91,11 @@ ScalarConverter::operator float() const {
 }
 
 ScalarConverter::operator double() const {
-	if (std::isinf(_intVal))
-		throw ImpossibleException();
 	return _intVal;
 }
 
 bool ScalarConverter::isNumber(const std::string& s) {
 	std::string::const_iterator it = s.begin();
-	// while ((it != s.end() && std::isdigit(*it)) || *it == '.') ++it;
 	while ((it != s.end() && std::isdigit(*it))) ++it;
 	return !s.empty() && it == s.end();
 }
