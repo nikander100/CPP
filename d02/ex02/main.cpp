@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/06/02 19:18:33 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/01/18 17:49:16 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 static void toContinue(void) {
 	std::cout << TEAL << "\nPress ENTER to continue...\n" << RESET;
-	std::getchar();
+	std::getwchar();
 }
 
 int main(int argc, char **argv) {
