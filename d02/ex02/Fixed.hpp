@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 17:03:52 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/01/18 17:49:40 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/02/06 18:49:30 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ public:
 	Fixed operator -- (int); // Post-decrement
 
 	int getRawBits() const;
-	void setRawBits(int raw);
+	void setRawBits(int const raw);
 
 	float toFloat() const;
 	int toInt() const;
