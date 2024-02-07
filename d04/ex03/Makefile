@@ -1,24 +1,28 @@
-NAME = runme
-SRCS = AMateria.cpp \
+NAME := runme
+SRCS := AMateria.cpp \
 		Character.cpp \
 		Cure.cpp \
 		Ice.cpp \
 		MateriaSource.cpp \
 		main.cpp
-OBJS = $(addprefix obj/,$(SRCS:.cpp=.o))
-CC = clang++
-INC_DIR = .
-INC = -I$(INC_DIR)
-FLAGS = -Wall -Werror -Wextra $(INC)
+INC_DIR := .
+OBJ_DIR := obj
+OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
+CXX := clang++
+CXXFLAGS := -Wall -Werror -Wextra
+CPPFLAGS := -I $(INC_DIR)
+
+DIR_DUP = mkdir -p $(@D)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) -o $(NAME)
 
-obj/%.o: %.cpp $(INCLUDE)
-	mkdir -p obj
-	$(CC) $(FLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.cpp
+	$(DIR_DUP)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(info CREATED $@)
 
 clean:
 	rm -rf obj/
