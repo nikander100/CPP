@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/11 18:06:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/12 18:19:05 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/02/21 16:54:25 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define __ANIMAL_HPP__
 
 # include <iostream>
+# include <string>
+# include "Brain.hpp"
 
 class Animal {
 public:

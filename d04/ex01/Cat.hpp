@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/11 18:17:34 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/12 18:18:53 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/02/21 17:11:28 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ public:
 	// Assignment Operator
 	Cat &operator = (const Cat &right);
 
-	virtual void makeSound() const;
+	void makeSound() const;
+	Brain *getBrain() const;
+
+private:
+	Brain *_brain;
 };
 
 #endif
