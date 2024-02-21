@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/12 16:48:44 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/12 16:49:17 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/02/21 19:13:36 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ Dog::~Dog() {
 		std::cout << "[DEBUG] Dog destructor called WOOF." << std::endl;
 }
 
-Dog::Dog(const Dog& copy) {
-	type = copy.type;
-}
+Dog::Dog(const Dog& copy) : Animal(copy){}
 
 Dog &Dog::operator=(const Dog &right) {
 	if (this != &right) {
-		type = right.type;
+		// Call the base class assignment operator to handle the 'type' member variable
+		Animal::operator=(right);
 	} 
 	return (*this);
 }
