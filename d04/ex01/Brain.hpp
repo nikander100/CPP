@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/14 18:04:53 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/14 18:17:26 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/03/28 19:19:57 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define __BRAIN_HPP__
 
 # include <string>
+# include <iostream>
 
 class Brain
 {
@@ -24,8 +25,10 @@ public:
 	// Assignment Operator
 	Brain &operator = (const Brain &right);
 
-	void getIdea() const;
-	void getIdea(int index) const;
+	// Getters
+	const std::string& getIdea() const;
+	const std::string& getIdea(int index) const;
+	const std::string* getIdeas() const;
 private:
 	std::string ideas[100];
 };

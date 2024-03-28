@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/02/21 16:50:11 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/03/28 19:35:35 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include "Brain.hpp"
+#include <iomanip>
 
 bool debug = false;
 
@@ -34,6 +35,23 @@ static void toContinue(void) {
 	std::getchar();
 }
 
+/**
+ * @brief The main entry point of the program.
+ *
+ * This function is responsible for initializing the program, checking the command line arguments,
+ * creating an array of Animal objects, and performing some operations on them.
+ * If the command line argument is "DEBUG=true", it enables debug mode and prints debug messages.
+ * Otherwise, it prints a message indicating that debug mode is disabled.
+ * After that, it creates an array of 10 Animal pointers, where the first 5 pointers point to Cat objects
+ * and the remaining 5 pointers point to Dog objects.
+ * It then creates a copy of the first Cat object in the array and prints the ideas stored in its brain
+ * as well as the ideas stored in the brain of the first Cat object in the array.
+ * Finally, it deletes the dynamically allocated objects and returns 0.
+ *
+ * @param argc The number of command line arguments.
+ * @param argv An array of strings containing the command line arguments.
+ * @return The exit status of the program.
+ */
 int main(int argc, char **argv) {
 	if (argc > 1) {
 		std::string arg = argv[1];
@@ -49,23 +67,25 @@ int main(int argc, char **argv) {
 	}
 	
 	toContinue();
-	const Animal* meta = new Animal();
-	const Animal* i = new Cat();
-	const Animal* j = new Dog();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-
-	toContinue();
-	const WrongAnimal* x = new WrongCat();
-	x->makeSound(); //will output the WrongAnimal sound!
-
-	delete i;
-	delete j;
-	delete x;
-	delete meta;
+	Animal* animals[10];
+	
+	for (int i = 0; i < 10; i++)
+	{
+		if (i >= 5)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+	Cat copy(*(Cat *)animals[0]);
+	std::cout << std::endl;
+	for (int i = 0; i < 100; i++)
+	{
+		std::cout << std::setw(50) << std::left << copy.getBrain()->getIdea(i);
+		std::cout << std::setw(50) << std::left << ((Cat *)animals[0])->getBrain()->getIdea(i) << std::endl;
+	}
+	std::cout << std::endl;
+	for (int i = 0; i < 10; i++)
+		delete animals[i];
 	
 	return (0);
 }

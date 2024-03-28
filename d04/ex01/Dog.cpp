@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/12 16:48:44 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/12 16:49:17 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/03/28 19:13:32 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,36 @@
 
 extern bool debug;
 
-Dog::Dog() {
+Dog::Dog() : _brain(new Brain()) {
 	if (debug)
 		std::cout << "[DEBUG] Dog constructor called." << std::endl;
 	type = "Dog";
 }
 
 Dog::~Dog() {
+	if (_brain)
+		delete _brain;
 	if (debug)
 		std::cout << "[DEBUG] Dog destructor called WOOF." << std::endl;
 }
 
-Dog::Dog(const Dog& copy) {
-	type = copy.type;
-}
+Dog::Dog(const Dog& copy) : Animal(copy), _brain(new Brain(*copy._brain)){}
 
 Dog &Dog::operator=(const Dog &right) {
 	if (this != &right) {
-		type = right.type;
+		// Call the base class assignment operator to handle the 'type' member variable
+		Animal::operator=(right);
+		if (_brain)
+			delete _brain;
+		_brain = new Brain(*right._brain);
 	} 
 	return (*this);
 }
 
 void Dog::makeSound() const {
 	std::cout << "The " << type << " goes WOOF WOOF WOOF." << std::endl;
+}
+
+const Brain *Dog::getBrain() const {
+	return (_brain);
 }

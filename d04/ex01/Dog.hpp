@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/11 18:20:04 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/02/21 17:06:19 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/03/28 19:13:14 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ public:
 	Dog &operator = (const Dog &right);
 
 	void makeSound() const;
+	const Brain *getBrain() const;
 
 private:
-	Brain *brain;
+	Brain *_brain;
 };
 
 #endif
