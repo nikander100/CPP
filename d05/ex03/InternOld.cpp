@@ -6,16 +6,17 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/08 20:08:11 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/02 21:38:41 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 21:51:46 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Intern.hpp"
+#include "InternOld.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-Intern::Intern() : _formNames{"presidential pardon", "robotomy request", "shrubbery creation"} {}
+Intern::Intern() : _formNames{"presidential pardon", "robotomy request", "shrubbery creation"} {
+}
 
 
 Intern::~Intern() {
