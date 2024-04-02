@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/02 17:04:56 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 17:09:24 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ int main(int argc, char **argv) {
 			animals[i] = new Dog();
 		else
 			animals[i] = new Cat();
+		animals[i]->makeSound();
 	}
 	Cat copy(*(Cat *)animals[0]);
 	std::cout << std::endl;
 	for (int i = 0; i < 100; i++)
 	{
-		std::cout << std::setw(50) << std::left << copy.getBrain()->getIdea(i);
-		std::cout << std::setw(50) << std::left << ((Cat *)animals[0])->getBrain()->getIdea(i) << std::endl;
+		std::cout << std::setw(50) << std::left << copy.getBrain()->getIdea(i); // get idea from the newly copied cat
+		std::cout << std::setw(50) << std::left << ((Cat *)animals[0])->getBrain()->getIdea(i) << std::endl; // get idea from the original cat.
 	}
 	std::cout << std::endl;
 	for (int i = 0; i < 10; i++)
