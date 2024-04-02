@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Animal.hpp                                         :+:    :+:            */
+/*   AAnimal.hpp                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/11 18:06:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/21 18:59:17 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 16:52:37 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define __ANIMAL_HPP__
 
 # include <iostream>
+# include <string>
+# include "Brain.hpp"
 
 class AAnimal {
 public:

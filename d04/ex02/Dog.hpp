@@ -6,14 +6,14 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/11 18:20:04 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/21 19:01:30 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 16:59:14 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __DOG_HPP__
 # define __DOG_HPP__
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 
 class Dog : public AAnimal {
 public:
@@ -23,7 +23,11 @@ public:
 	// Assignment Operator
 	Dog &operator = (const Dog &right);
 
-	virtual void makeSound() const;
+	void makeSound() const;
+	const Brain *getBrain() const;
+
+private:
+	Brain *_brain;
 };
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/09/11 18:17:34 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/09/21 19:01:32 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 16:59:15 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __CAT_HPP__
 # define __CAT_HPP__
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 
 class Cat : public AAnimal {
 public:
@@ -23,7 +23,11 @@ public:
 	// Assignment Operator
 	Cat &operator = (const Cat &right);
 
-	virtual void makeSound() const;
+	void makeSound() const;
+	const Brain *getBrain() const;
+
+private:
+	Brain *_brain;
 };
 
 #endif
