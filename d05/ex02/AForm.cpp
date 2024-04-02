@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 20:05:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/16 00:06:09 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 21:03:15 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ unsigned int AForm::getExecGrade() const {
 	return (_execGrade);
 }
 
-std::string AForm::getName() const {
+const std::string AForm::getName() const {
 	return (_name);
 }
 
-std::string AForm::getTarget() const {
+const std::string AForm::getTarget() const {
 	return (_target);
 }
 

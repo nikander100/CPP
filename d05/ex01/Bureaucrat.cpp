@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/19 17:04:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/10/26 20:51:42 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 20:55:42 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &right) {
 	return (*this);
 }
 
-std::string Bureaucrat::getName() const {
+const std::string Bureaucrat::getName() const {
 	return (_name);
 }
 
@@ -61,7 +61,7 @@ void Bureaucrat::decrementGrade() {
 		_grade++;
 }
 
-void Bureaucrat::signForm(Form &form) const {
+	void Bureaucrat::signForm(Form &form) const {
 	try {
 		form.beSigned(*this);
 		std::cout << _name << " signs " << form.getName() << std::endl;

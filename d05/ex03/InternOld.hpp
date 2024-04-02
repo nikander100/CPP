@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ShrubberyCreationForm.hpp                          :+:    :+:            */
+/*   InternOld.hpp                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/11/03 20:57:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/02 21:02:58 by nvan-der      ########   odam.nl         */
+/*   Created: 2023/11/08 19:47:17 by nvan-der      #+#    #+#                 */
+/*   Updated: 2024/04/02 21:34:54 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include "AForm.hpp"
+# pragma once
 
-class ShrubberyCreationForm : public AForm
+# include "AForm.hpp"
+
+class Intern
 {
 public:
-	ShrubberyCreationForm(const std::string &target);
-	ShrubberyCreationForm(const ShrubberyCreationForm &copy);
-	~ShrubberyCreationForm();
+	Intern();
+	virtual ~Intern();
 
-	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &right);
+	class InvalidFormNameException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
 
-	void action(const Bureaucrat &executer) const;
+	AForm *makeForm(const std::string &name, const std::string &target) const;
 
 private:
-	ShrubberyCreationForm();
+	 const std::string _formNames[3];
 };

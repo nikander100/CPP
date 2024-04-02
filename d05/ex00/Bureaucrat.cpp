@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/19 17:04:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/10/26 20:52:48 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 19:48:32 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &right) {
 	return (*this);
 }
 
-std::string Bureaucrat::getName() const {
+const std::string Bureaucrat::getName() const {
 	return (_name);
 }
 

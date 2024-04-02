@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 20:05:25 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/03 19:23:23 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 19:50:35 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ unsigned int Form::getExecGrade() const {
 	return (_execGrade);
 }
 
-std::string Form::getName() const {
+const std::string Form::getName() const {
 	return (_name);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/08 19:47:17 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/08 20:10:19 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 21:20:56 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class Intern
 {
 public:
 	Intern();
-	~Intern();
+	virtual ~Intern();
 
 	class InvalidFormNameException : public std::exception
 	{

@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/26 19:14:13 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/16 00:03:30 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/02 21:19:53 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ public:
 	AForm(const std::string &name, unsigned int signGrade, unsigned int execGrade);
 	AForm(const std::string &name, const std::string &target, unsigned int signGrade, unsigned int execGrade);
 	AForm(const AForm &copy);
-	~AForm();
+	virtual ~AForm();
 
 	AForm &operator=(const AForm &right);
 
 	// Getters
-	std::string getName() const;
-	std::string getTarget() const;
+	const std::string getName() const;
+	const std::string getTarget() const;
 	bool getSigned() const;
 	unsigned int getSignGrade() const;
 	unsigned int getExecGrade() const;
