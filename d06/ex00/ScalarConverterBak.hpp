@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/17 17:18:55 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/03 21:18:26 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/03 19:52:48 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@
 
 class ScalarConverter {
 public:
+	ScalarConverter(const std::string &input);
+	ScalarConverter(const ScalarConverter &copy);
 	virtual ~ScalarConverter();
 
-	static void convert(const std::string &input);
+	ScalarConverter &operator=(const ScalarConverter &rhs);
+	operator int() const;
+	operator char() const;
+	operator float() const;
+	operator double() const;
 
 	class NonDisplayableException : public std::exception {
 	public:
@@ -40,21 +46,10 @@ public:
 	};
 	
 private:
+	bool isNumber(const std::string &input);
+	bool _num;
+	double _intVal;
 	ScalarConverter();
-	ScalarConverter(const std::string &input);
-	ScalarConverter(const ScalarConverter &copy);
-	ScalarConverter &operator=(const ScalarConverter &rhs);
-
-	static bool isChar(const std::string &input);
-	static bool isInt(const std::string &input);
-	static bool isFloat(const std::string &input);
-	static bool isDouble(const std::string &input);
-	static bool isSpecial(const std::string &input);
-
-	static void	convertToChar(const std::string &input);
-	static void	convertToInt(const std::string &input);
-	static void	convertToFloat(const std::string &input);
-	static void	convertToDouble(const std::string &input);
-	static void	convertToPseudo(const std::string &input);
-
 };
+
+std::ostream &operator<<(std::ostream &out, ScalarConverter const &rhs);
