@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/03 20:49:53 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/04 20:42:21 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ int	main(int ac, char **av) {
 		return 1;
 	}
 	try {
-		ScalarConverter scalar(av[1]);
-		std::cout << scalar;
-	}
-	catch (std::exception &e) {
+		ScalarConverter::convert(av[1]);
+	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 	return 0;

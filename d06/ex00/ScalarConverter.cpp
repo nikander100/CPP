@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/17 17:18:52 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/03 21:17:25 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/04 21:53:00 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,53 +27,35 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &rhs) {
 ScalarConverter::~ScalarConverter() {
 }
 
-// bool ScalarConverter::isNumber(const std::string& s) {
-// 	std::string::const_iterator it = s.begin();
-// 	while ((it != s.end() && std::isdigit(*it))) ++it;
-// 	return !s.empty() && it == s.end();
-// }
-
 void ScalarConverter::convert(const std::string& input) {
 	if (isChar(input)) {
-		convertToChar(input);
+		convertFromChar(input);
 	} else if (isInt(input)) {
-		convertToInt(input);
+		convertFromInt(input);
 	} else if (isFloat(input)) {
-		convertToFloat(input);
+		convertFromFloat(input);
 	} else if (isDouble(input)) {
-		convertToDouble(input);
-	} else if (isSpecial(input)) {
-		convertToPseudo(input);
+		convertFromDouble(input);
+	} else if (isPseudo(input)) {
+		convertFromPseudo(input);
 	} else {
 		std::cout << "Invalid input. Enter a char, int, float, or double value." << std::endl;
 	}
 }
 
-// Exceptions
-
-const char* ScalarConverter::NonDisplayableException::what() const throw() {
-	return "Non displayable";
-}
-
-const char* ScalarConverter::ImpossibleException::what() const throw() {
-	return "impossible";
-}
-
-const char* ScalarConverter::InvalidInputException::what() const throw() {
-	return "Invalid input";
-}
-
-
 // Checkers 
 
-bool ScalarConverter::isChar(const std::string &input) {
-	return input.length() == 1;
+bool ScalarConverter::isChar(const std::string &input){
+	if (input.length() == 1)
+		return true;
+	return false;
 }
 
 bool ScalarConverter::isInt(const std::string &input) {
 	try {
-		std::stoi(input);
-		return true;
+		std::size_t pos;
+		std::stoi(input, &pos);
+		return pos == input.length();
 	} catch (...) {
 		return false;
 	}
@@ -81,18 +63,119 @@ bool ScalarConverter::isInt(const std::string &input) {
 
 bool ScalarConverter::isFloat(const std::string &input) {
 	try {
-		std::stof(input);
+		size_t pos;
+		std::stof(input, &pos);
+		
+		if (pos == input.length() - 1 && input.back() == 'f')
+			return true;
+		else
+			return false;
+	} catch (...) {
+		return false;
+	}
+}
+
+
+bool ScalarConverter::isDouble(const std::string &input) {
+	try {
+		size_t pos;
+		std::stod(input, &pos);
+		return pos == input.size(); 
 		return true;
 	} catch (...) {
 		return false;
 	}
 }
 
-bool ScalarConverter::isDouble(const std::string &input) {
+bool	ScalarConverter::isPseudo(const std::string &input)
+{
+	const std::string	pseudoList[] = { "-inff", "+inff", "nanf", "-inf", "+inf", "nan" };
+
+	for (size_t i = 0; i < (sizeof(pseudoList) / sizeof(pseudoList[0])); i++) {
+		if (input == pseudoList[i])
+			return true;
+	}
+	return false;
+}
+
+// Converters
+
+void ScalarConverter::convertFromChar(const std::string &input) {
+	char	c = input[0];
+	
 	try {
-		std::stod(input);
-		return true;
+		std::cout << "  char: \t'" << static_cast<char>(c) << "'" << std::endl;
 	} catch (...) {
-		return false;
+		std::cout << "  char: \tNon displayable" << std::endl;
+	}
+	std::cout << "int:    \t" << static_cast<int>(c) << std::endl;
+	std::cout << "float:  \t" << std::fixed << std::setprecision(8) << static_cast<float>(c) << "f" << std::endl;
+	std::cout << "double: \t" << static_cast<double>(c) << std::endl;
+}
+
+void ScalarConverter::convertFromInt(const std::string &input) {
+	int i = std::stoi(input);
+
+	if (i <= std::numeric_limits<char>::min() || i >= std::numeric_limits<char>::max())
+		std::cout << "char:   \timpossible" << std::endl;
+	else {
+		if (std::isprint(i))
+			std::cout << "char:   \t'" << static_cast<char>(i) << "'" << std::endl;
+		else
+			std::cout << "char:   \tnon displayable" << std::endl;
+	}
+	std::cout << "int:    \t" << i << std::endl;
+	std::cout << "float:  \t" << std::fixed << std::setprecision(8) << static_cast<float>(i) << "f" << std::endl;
+	std::cout << "double: \t" << static_cast<double>(i) << std::endl;
+}
+
+void ScalarConverter::convertFromFloat(const std::string &input) {
+	float	f = stof(input);
+
+	if (f <= std::numeric_limits<char>::min() || f >= std::numeric_limits<char>::max())
+		std::cout << "char:   \timpossible" << std::endl;
+	else {
+		if (std::isprint(static_cast<char>(f)))
+			std::cout << "char:   \t'" << static_cast<char>(f) << "'" << std::endl;
+		else
+			std::cout << "char:   \tnon displayable" << std::endl;
+	}
+	if (f <= std::numeric_limits<int>::min() || f >= static_cast<float>(std::numeric_limits<int>::max()))
+		std::cout << "int:    \timpossible" << std::endl;
+	else
+		std::cout << "int:    \t" << static_cast<int>(f) << std::endl;
+	std::cout << "float:  \t" << std::fixed << std::setprecision(8) << f << "f" << std::endl;
+	std::cout << "double: \t" << static_cast<double>(f) << std::endl;
+}
+
+void ScalarConverter::convertFromDouble(const std::string &input) {
+	double	d = std::stod(input);
+
+	if (d <= std::numeric_limits<char>::min() || d >= std::numeric_limits<char>::max())
+		std::cout << "char:   \timpossible" << std::endl;
+	else {
+		if (std::isprint(static_cast<char>(d)))
+			std::cout << "char:   \t'" << static_cast<char>(d) << "'" << std::endl;
+		else
+			std::cout << "char:   \tnon displayable" << std::endl;
+	}
+	if (d <= std::numeric_limits<int>::min() || d >= std::numeric_limits<int>::max())
+		std::cout << "int:    \timpossible" << std::endl;
+	else
+		std::cout << "int:    \t" << static_cast<int>(d) << std::endl;
+	std::cout << "float:  \t" << std::fixed << std::setprecision(8) << static_cast<float>(d) << "f" << std::endl;
+	std::cout << "double: \t" << d << std::endl;
+}
+
+void ScalarConverter::convertFromPseudo(const std::string &input) {
+	std::cout << "char:   \timpossible" << std::endl;
+	std::cout << "int:    \timpossible" << std::endl;
+	if (input == "-inff" || input == "+inff" || input == "nanf") {
+		std::cout << "float:  \t" << input << std::endl;
+		std::cout << "double: \t" << input.substr(0, input.size() - 1) << std::endl;
+	}
+	else {
+		std::cout << "float:  \t" << input << "f" << std::endl;
+		std::cout << "double: \t" << input << std::endl;
 	}
 }

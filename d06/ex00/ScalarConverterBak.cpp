@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/17 17:18:52 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/03 20:07:15 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/04 18:37:27 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ const char* ScalarConverter::NonDisplayableException::what() const throw() {
 }
 
 const char* ScalarConverter::ImpossibleException::what() const throw() {
-	return "impossible";
+	return "Impossible";
 }
 
 const char* ScalarConverter::InvalidInputException::what() const throw() {
