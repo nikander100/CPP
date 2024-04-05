@@ -6,17 +6,12 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/08 20:40:54 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/05 22:18:35 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "AForm.hpp"
-#include "Intern.hpp"
+#include "Serializer.hpp"
 
 bool debug = false;
 
@@ -37,95 +32,36 @@ static void toContinue(void) {
 int main() {
 	srand(time(NULL));
 	
-	toContinue();
+		Data originalData;
+	originalData.str = "Test string";
+	originalData.val = 123;
 
-	Bureaucrat diluc("Diluc", 5);
-	Bureaucrat zhongli("Zhongli", 45);
-	Bureaucrat keqing("Keqing", 137);
-
-	std::cout << BLUE << "[INFO] " << RESET << "Created bureaucrats:" << std::endl;
-	std::cout << diluc << std::endl;
-	std::cout << zhongli << std::endl;
-	std::cout << keqing << std::endl;
+	std::cout << "Original data: " << originalData.str << ", " << originalData.val << std::endl;
 
 	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Creating Intern and empty Forms" << std::endl;
 
-	Intern intern;
+	// Serialize the Data object
+	uintptr_t raw = Serializer::serialize(&originalData);
 
-	AForm* formA;
-	AForm* formB;
-	AForm* formC;
-	AForm* formD;
+	// Print the serialized data
+	std::cout << "Serialized data: " << std::hex << raw << std::dec << std::endl;
 
-	std::cout << BLUE << "[INFO] " << RESET << "Trying to create forms:" << std::endl;
-	try
-	{
-		formA = intern.makeForm("shrubbery creation", "home");
-		formB = intern.makeForm("robotomy request", "Bender");
-		formC = intern.makeForm("presidential pardon", "Stephen Bannon");
-		formD = intern.makeForm("test", "test");
+	toContinue();
+
+	// Deserialize the raw data
+	Data* deserializedData = Serializer::deserialize(raw);
+
+	// Print the deserialized data
+	std::cout << "Deserialized data: " << deserializedData->str << ", " << deserializedData->val << std::endl;
+	
+	toContinue();
+
+	// Check that the deserialized Data object is the same as the original one
+	if (deserializedData->str == originalData.str && deserializedData->val == originalData.val) {
+		std::cout << "Test passed successfully!\n";
+	} else {
+		std::cout << "Test failed.\n";
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form A:" << std::endl;
-	diluc.executeForm(*formA);
-	zhongli.executeForm(*formA);
-	keqing.executeForm(*formA);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Signing form A:" << std::endl;
-	diluc.signForm(*formA);
-	zhongli.signForm(*formA);
-	keqing.signForm(*formA);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form A again:" << std::endl;
-	diluc.executeForm(*formA);
-	zhongli.executeForm(*formA);
-	keqing.executeForm(*formA);
-	
 
-	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form B:" << std::endl;
-	diluc.executeForm(*formB);
-	zhongli.executeForm(*formB);
-	keqing.executeForm(*formB);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Signing form B:" << std::endl;
-	diluc.signForm(*formB);
-	zhongli.signForm(*formB);
-	keqing.signForm(*formB);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form B again:" << std::endl;
-	diluc.executeForm(*formB);
-	zhongli.executeForm(*formB);
-	keqing.executeForm(*formB);
-	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form C:" << std::endl;
-	diluc.executeForm(*formC);
-	zhongli.executeForm(*formC);
-	keqing.executeForm(*formC);
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Signing form C:" << std::endl;
-	diluc.signForm(*formC);
-	zhongli.signForm(*formC);
-	keqing.signForm(*formC);
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form C again:" << std::endl;
-	diluc.executeForm(*formC);
-	zhongli.executeForm(*formC);
-	keqing.executeForm(*formC);
 }
+

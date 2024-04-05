@@ -1,5 +1,5 @@
-NAME := convert
-SRCS := main.cpp ScalarConverter.cpp
+NAME := runme
+SRCS := main.cpp Serializer.cpp
 INC_DIR := .
 OBJ_DIR := obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
