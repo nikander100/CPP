@@ -1,10 +1,10 @@
-NAME := convert
-SRCS := main.cpp ScalarConverter.cpp
+NAME := runme
+SRCS := main.cpp Base.cpp
 INC_DIR := .
 OBJ_DIR := obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 CXX := clang++
-CXXFLAGS := -Wall -Werror -Wextra
+CXXFLAGS := -Wall -Werror -Wextra -std=c++20
 CPPFLAGS := -I $(INC_DIR)
 
 DIR_DUP = mkdir -p $(@D)

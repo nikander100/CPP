@@ -6,17 +6,16 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/17 15:53:39 by nvan-der      #+#    #+#                 */
-/*   Updated: 2023/11/08 20:40:54 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/04/09 22:18:45 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "AForm.hpp"
-#include "Intern.hpp"
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+#include "Rand.hpp"
 
 bool debug = false;
 
@@ -28,104 +27,137 @@ bool debug = false;
 #define TEAL "\033[36m"
 #define BLUE "\033[1;34m"
 
-
 static void toContinue(void) {
 	std::cout << TEAL << "\nPress ENTER to continue...\n" << RESET;
 	std::getchar();
 }
 
+using StrategyNerd::Rand;
+
+// Generates instance of A, B or C based on randomgen.
+Base *generate(void) {
+	u_int64_t randomNumber = Rand::RandomNumber(1, 3);
+	if (randomNumber == 1) {
+		return new A();
+	} else if (randomNumber == 2) {
+		return new B();
+	} else if (randomNumber == 3) {
+		return new C();
+	}
+	return nullptr;
+}
+
+template <typename T>
+bool PrintType(Base* p, const char* typeName) {
+	if (auto casted = dynamic_cast<T*>(p)) {
+		std::cout << typeName;
+		return true;
+	}
+	return false;
+}
+
+// Prints actual type pointed out by p pointer.
+void identify(Base *p)
+{
+	if (PrintType<A>(p, "A")) return;
+	if (PrintType<B>(p, "B")) return;
+	if (PrintType<C>(p, "C")) return;
+}
+
+void identify1(Base* p) {
+	if (dynamic_cast<A*>(p) != nullptr) {
+		std::cout << "A";
+	} else if (dynamic_cast<B*>(p) != nullptr) {
+		std::cout << "B";
+	} else if (dynamic_cast<C*>(p) != nullptr) {
+		std::cout << "C";
+	}
+}
+
+template <typename T>
+bool PrintType(Base& p, const char* typeName) {
+	try {
+		(void)dynamic_cast<T&>(p);
+		std::cout << typeName;
+		return true;
+	} catch (const std::bad_cast&) {
+		return false;
+	}
+}
+
+// Prints actual type pointed out by p refference.
+void identify(Base &p)
+{
+	if (PrintType<A>(p, "A")) return;
+	if (PrintType<B>(p, "B")) return;
+	if (PrintType<C>(p, "C")) return;
+}
+void identify1(Base &p)
+{
+	try{
+		(void)dynamic_cast<A&>(p);
+		std::cout << "A";
+		return;
+	}
+	catch (const std::bad_cast &e) { /* Not A */ }
+	
+	try{
+		(void)dynamic_cast<B&>(p);
+		std::cout << "B";
+		return;
+	}
+	catch (const std::bad_cast &e) { /* Not B */ }
+	
+	try{
+		(void)dynamic_cast<C&>(p);
+		std::cout << "C";
+		return;
+	}
+	catch (const std::bad_cast &e) { /* Not C */ }
+}
+
 int main() {
-	srand(time(NULL));
+	int amt = 50;
+	std::cout << typeid(amt).name();
+	Base* instances[amt];
+	
+	for (int i = 0; i < amt; i++)
+		instances[i] = generate();
+
+	// Identifies the type of each instance using a pointer.
+	std::cout << "Identify pointer:" << std::endl;
+	for (int i = 0; i < amt; i++)
+		identify(instances[i]);
+	std::cout << std::endl;
 	
 	toContinue();
 
-	Bureaucrat diluc("Diluc", 5);
-	Bureaucrat zhongli("Zhongli", 45);
-	Bureaucrat keqing("Keqing", 137);
-
-	std::cout << BLUE << "[INFO] " << RESET << "Created bureaucrats:" << std::endl;
-	std::cout << diluc << std::endl;
-	std::cout << zhongli << std::endl;
-	std::cout << keqing << std::endl;
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Creating Intern and empty Forms" << std::endl;
-
-	Intern intern;
-
-	AForm* formA;
-	AForm* formB;
-	AForm* formC;
-	AForm* formD;
-
-	std::cout << BLUE << "[INFO] " << RESET << "Trying to create forms:" << std::endl;
-	try
-	{
-		formA = intern.makeForm("shrubbery creation", "home");
-		formB = intern.makeForm("robotomy request", "Bender");
-		formC = intern.makeForm("presidential pardon", "Stephen Bannon");
-		formD = intern.makeForm("test", "test");
+	// Identifies the type of each instance using a reference.
+	std::cout << "Identifiy reference:" << std::endl;
+	for (int i = 0; i < amt; i++) {
+		identify(*instances[i]);
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
+	std::cout << std::endl;
+
+	toContinue();
+
+	// Identifies the type of each instance using a pointer.
+	std::cout << "Identify pointer:" << std::endl;
+	for (int i = 0; i < amt; i++)
+		identify1(instances[i]);
+	std::cout << std::endl;
+	
+	toContinue();
+
+	// Identifies the type of each instance using a reference.
+	std::cout << "Identifiy reference:" << std::endl;
+	for (int i = 0; i < amt; i++) {
+		identify1(*instances[i]);
 	}
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form A:" << std::endl;
-	diluc.executeForm(*formA);
-	zhongli.executeForm(*formA);
-	keqing.executeForm(*formA);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Signing form A:" << std::endl;
-	diluc.signForm(*formA);
-	zhongli.signForm(*formA);
-	keqing.signForm(*formA);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form A again:" << std::endl;
-	diluc.executeForm(*formA);
-	zhongli.executeForm(*formA);
-	keqing.executeForm(*formA);
-	
+	std::cout << std::endl;
 
-	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
+	for (int i = 0; i < amt; i++)
+		delete instances[i];
 
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form B:" << std::endl;
-	diluc.executeForm(*formB);
-	zhongli.executeForm(*formB);
-	keqing.executeForm(*formB);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Signing form B:" << std::endl;
-	diluc.signForm(*formB);
-	zhongli.signForm(*formB);
-	keqing.signForm(*formB);
-	
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form B again:" << std::endl;
-	diluc.executeForm(*formB);
-	zhongli.executeForm(*formB);
-	keqing.executeForm(*formB);
-	std::cout << std::endl << "-------------------------------------------------------" << std::endl;
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form C:" << std::endl;
-	diluc.executeForm(*formC);
-	zhongli.executeForm(*formC);
-	keqing.executeForm(*formC);
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Signing form C:" << std::endl;
-	diluc.signForm(*formC);
-	zhongli.signForm(*formC);
-	keqing.signForm(*formC);
-
-	toContinue();
-	std::cout << BLUE << "[INFO] " << RESET << "Executing form C again:" << std::endl;
-	diluc.executeForm(*formC);
-	zhongli.executeForm(*formC);
-	keqing.executeForm(*formC);
+	return 0;
 }
