@@ -117,7 +117,7 @@ void identify1(Base &p)
 }
 
 int main() {
-	int amt = 50;
+	const int amt = 50;
 	std::cout << typeid(amt).name();
 	Base* instances[amt];
 	
