@@ -12,7 +12,7 @@ private:
 public:
 	Array();
 	Array(unsigned int n);
-	Array(const Array &rhs);
+	Array(const Array &copy);
 	Array &operator=(const Array& rhs);
 	T& operator[](unsigned int i) const;
 	unsigned int size() const;
@@ -47,7 +47,7 @@ std::ostream &operator<<(std::ostream &out, const Array<T> &arr);
 // 	Array(unsigned int n) : _arr(new T[n]), _size(n) {
 // 	};
 
-// 	Array(const Array &rhs) : _arr(new T[rhs.size()]), _size(rhs.size()) {
+// 	Array(const Array &copy) : _arr(new T[rhs.size()]), _size(rhs.size()) {
 // 		for (unsigned int i = 0; i < _size; i++)
 // 			_arr[i] = rhs._arr[i];
 // 	};
