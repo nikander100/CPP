@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/19 17:04:30 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/02 21:20:46 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/05/02 16:41:30 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name(copy._name), _grade(copy.
 }
 
 Bureaucrat::~Bureaucrat() {
-}
-
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat &right) {
-	if (this != &right) {
-		_name = right._name;
-		_grade = right._grade;
-	}
-	return (*this);
 }
 
 const std::string Bureaucrat::getName() const {

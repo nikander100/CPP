@@ -6,7 +6,7 @@
 /*   By: nvan-der <nvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/18 18:17:35 by nvan-der      #+#    #+#                 */
-/*   Updated: 2024/04/02 21:20:36 by nvan-der      ########   odam.nl         */
+/*   Updated: 2024/05/02 16:41:02 by nvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	Bureaucrat(const Bureaucrat &copy);
 	virtual ~Bureaucrat();
 
-	Bureaucrat& operator=(const Bureaucrat &right);
+	Bureaucrat& operator=(const Bureaucrat &right) = delete; // Don't allow assignment
 
 	// Getters
 	const std::string getName() const;
@@ -50,7 +50,7 @@ public:
 	};
 
 private:
-	std::string		_name;
+	const std::string	_name;
 	unsigned int	_grade;
 };
 
