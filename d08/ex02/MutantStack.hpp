@@ -11,14 +11,14 @@ class MutantStack : public std::stack<T, std::deque<T>> {
 	typedef typename std::deque<T>::iterator iterator;
 
 	iterator begin() { 
-		return c.begin();
+		return this->c.begin();
 		}
 
 	iterator end() { 
-		return c.end();
+		return this->c.end();
 	}
 
 	void clear() {
-		c.clear();
+		this->c.clear();
 	}
 };

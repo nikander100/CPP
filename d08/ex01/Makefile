@@ -1,5 +1,5 @@
 NAME := runme
-SRCS := main.cpp
+SRCS := main.cpp Span.cpp
 INC_DIR := .
 OBJ_DIR := obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))

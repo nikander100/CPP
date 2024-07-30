@@ -21,18 +21,18 @@ class BitcoinExchange {
 	public:
 		BitcoinExchange();
 		BitcoinExchange(std::string const &database_filename);
-		BitcoinExchange(BitcoinExchange const &src);
+		BitcoinExchange(BitcoinExchange const &src) = delete;
 		~BitcoinExchange();
-		BitcoinExchange &operator=(BitcoinExchange const &rhs);
+		BitcoinExchange &operator=(BitcoinExchange const &rhs) = delete;
 
 		void loadDatabase(std::string const &database_filename);
-        void evaluatePrices(const std::string &filename);
+		void evaluatePrices(const std::string &filename);
 
 
-    private:
-        std::map<std::string, float> _priceDatabase;
+	private:
+		std::map<std::string, float> _priceDatabase;
 
-        void validateDate(std::string &date);
+		void validateDate(std::string &date);
 		void validateAmount(float amount);
 		float findPriceForDate(const std::string &date);
 };

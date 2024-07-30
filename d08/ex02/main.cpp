@@ -12,12 +12,6 @@ bool debug = false;
 #define BLUE "\033[1;34m"
 #define WYSI 727
 
-
-static void toContinue(void) {
-	std::cout << TEAL << "\nPress ENTER to continue...\n" << RESET;
-	std::getchar();
-}
-
 int main() {
 	MutantStack<int> stack;
 	

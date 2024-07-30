@@ -10,7 +10,7 @@ class Span {
 	public:
 		Span(uint32_t n);
 		Span(const Span &src);
-		virtual ~Span();
+		~Span();
 
 		Span &operator=(const Span &rhs);
 

@@ -40,9 +40,9 @@ int main() {
 	toContinue();
 
 	try {
-		std::cout << "Accessing a valid index: " << intArray[5] << std::endl;
+		std::cout << "Accessing a valid index 5: " << intArray[5] << std::endl;
 		std::cout << "Accessing an invalid index: " << intArray[SIZE] << std::endl;
-	} catch (...) {
+	} catch (const std::exception& e) {
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 

@@ -242,9 +242,11 @@ date,exchange_rate
 2010-12-23,0.25
 2010-12-26,0.27
 2010-12-29,0.3
+# the first 4 lines of input should return the value of 2011-01-01 (it requests the value of 01-03)
 2011-01-01,0.3
 2011-01-04,0.3
 2011-01-07,0.32
+# the 5th line of input should return the value of 2011-01-07 (it requests the value of 01-09)
 2011-01-10,0.33
 2011-01-13,0.42
 2011-01-16,0.4

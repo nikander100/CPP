@@ -1,4 +1,4 @@
-#include "bitcoinExchange.hpp"
+#include "BitcoinExchange.hpp"
 
 int main(int ac, char* av[]) {
 	if (ac != 2) {
@@ -6,8 +6,8 @@ int main(int ac, char* av[]) {
 		return EXIT_FAILURE;
 	}
 
-	BitcoinExchange btcExchange;
-	btcExchange.loadDatabase("data.csv");
+	BitcoinExchange btcExchange("data.csv");
+	// btcExchange.loadDatabase("data.csv");
 	btcExchange.evaluatePrices(av[1]);
 
 	return EXIT_SUCCESS;

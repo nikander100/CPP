@@ -1,5 +1,5 @@
 NAME := RPN
-SRCS := main.cpp RPn.cpp
+SRCS := main.cpp RPN.cpp
 INC_DIR := .
 OBJ_DIR := obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))

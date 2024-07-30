@@ -1,5 +1,8 @@
 #include "easyfind.hpp"
 #include <iostream>
+#include <numeric>
+#include <random>
+
 
 bool debug = false;
 
@@ -12,18 +15,36 @@ bool debug = false;
 #define BLUE "\033[1;34m"
 
 
-static void toContinue(void) {
-	std::cout << TEAL << "\nPress ENTER to continue...\n" << RESET;
-	std::getchar();
-}
-
 int main() {
-	std::vector<int> vec = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	std::list<int> lst = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	std::vector<int> vec(20);
+	std::list<int> lst(20);
+	
+	// Fill vec with random numbers from 0 to 19
+	std::iota(vec.begin(), vec.end(), 0);
+	std::random_device rd;
+	std::mt19937 g(rd());
+	std::shuffle(vec.begin(), vec.end(), g);
+	
+	// Fill lst with vector values
+	lst.assign(vec.begin(), vec.end());
+
+	// Print vec
+	std::cout << BLUE << "Vector (I == Index): ";
+	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++) {
+		std::cout << RESET << "I" << (it - vec.begin()) << ": " << BLUE << *it << " ";
+	}
+	std::cout << RESET << std::endl;
 
 	int searchValue;
 	std::cout << "Enter a value to search: ";
-	std::cin >> searchValue;
+	while (!(std::cin >> searchValue)) {
+		std::cout << "Invalid input. Please enter a numeric value: ";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+
+	
+
 
 	try {
 		std::vector<int>::iterator vecResult = easyfind(vec, searchValue);
@@ -39,6 +60,5 @@ int main() {
 		std::cout << RED << "Value not found in list" << RESET << std::endl;
 	}
 
-	toContinue();
 	return EXIT_SUCCESS;
 }

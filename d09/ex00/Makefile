@@ -4,7 +4,7 @@ INC_DIR := .
 OBJ_DIR := obj
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 CXX := clang++
-CXXFLAGS := -Wall -Werror -Wextra
+CXXFLAGS := -Wall -Werror -Wextra -g
 CPPFLAGS := -I $(INC_DIR)
 
 DIR_DUP = mkdir -p $(@D)
